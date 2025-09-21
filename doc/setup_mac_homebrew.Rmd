@@ -38,10 +38,27 @@ brew install git wget curl pandoc tree
 ## Configurar o Git
 
 ```{bash eval=FALSE}
-git config --global user.name "Gustavo Givisiez"
+git config --global user.name "<Seu nome aqui>"
 git config --global user.email "gh_naves@id.uff.br"
 git config --global core.editor "code --wait"
 ```
+
+```{bash eval=FALSE}
+ssh-keygen -t ed25519 -C seuemail@algo.algumlugar
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+### Copiar a chave pública
+```{bash eval=FALSE}
+cat ~/.ssh/id_ed25519.pub
+```
+
+Adicionar no GitHub
+* Vá em Settings > SSH and GPG Keys > New SSH key
+* Cole a chave copiada
+* Dê um nome
+
 
 ## Apps gráficos
 
