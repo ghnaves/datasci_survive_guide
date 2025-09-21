@@ -1,0 +1,187 @@
+---
+title: "Instalação de Linux no Mac"
+author: "Gustavo Givisiez"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: journal
+    highlight: tango
+    code_folding: show
+    self_contained: true
+bibliography: /Users/ghnaves/Zotero/Minha Biblioteca.bib
+csl: /Users/ghnaves/Zotero/styles/planeta-zotero-abnt.csl
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Setup do Mac
+
+Fonte: @knows-nada2023
+
+Muitas pessoas instalam Linux em seus Macs e, ao apagar completamente a partição do macOS, descobrem tarde demais que parte do hardware depende de firmwares que só existem dentro do sistema original. Esses firmwares, como os de Wi-Fi e Bluetooth, são atualizados pelo macOS sempre que surge um novo padrão, e sem a partição do sistema original não há como recebê-los. Por isso, antes de instalar o Linux, é essencial preservar um espaço do disco com o macOS funcionando.
+
+O procedimento recomendado começa dentro do próprio macOS. Ou seja, por segurança, é prudente mante-lo instalo no HD ou instalar uma versão do MacOS mais parcimoniosa. Por exemplo, para computadores Intel, ligar o Mac e imediatamente segurar `Shift + Option + ⌘ + R` até aparecer o logotipo da Apple ou um globo girando instala a versão que veio de fábrica (ou a mais próxima disponível). Outras opções são `Option + ⌘ + R` que instala a versão mais recente compatível com o Mac, ou ainda `⌘ + R` que reinstala a versão atual do macOS instalada no seu Mac.
+
+Após esses preparativos, abra o Utilitário de Disco, clique com o botão direito no disco principal e escolha a opção de particionar. Crie uma nova partição em ExFAT, definindo o tamanho que pretende reservar para o Linux, mas deixando espaço suficiente para que o macOS siga funcionando (o Utilitário de Disco te impede de instalar um espaço maior que o mínimo necessário para o MacOS rodar). Após aplicar a mudança, reinicie o computador pelo instalador do Linux. Durante a instalação, **nunca escolha a opção de usar o disco inteiro**. Selecione o modo manual, localize a partição criada anteriormente (identificada pelo tamanho), apague-a e configure o Linux nesse espaço livre.
+
+Concluída a instalação, o Mac passará a iniciar automaticamente no Linux. Caso precise voltar ao macOS, é possível manter pressionada a tecla `Option` (`Alt`) durante a inicialização para escolher o sistema, embora isso exija apertar a tecla no tempo certo. Para facilitar o processo, muitos usuários instalam o rEFInd, que funciona melhor que o GRUB nos Macs e permite alternar entre Linux e macOS de forma confiável.
+
+Com esse arranjo, você mantém o macOS disponível apenas para as raras ocasiões em que for necessário atualizar firmwares ou acessar recursos exclusivos, enquanto o Linux roda normalmente no dia a dia. Se em algum momento algo deixar de funcionar no Linux, provavelmente será por falta de firmware; nesse caso, basta inicializar o macOS, atualizá-lo e copiar os arquivos necessários. Dessa forma, evita-se dores de cabeça comuns entre usuários que apagam totalmente o sistema da Apple ao instalar o Linux.
+
+Para instalar Linux, você precisa criar um novo container/partição fora do APFS, em formato “espaço livre” (que depois será formatado como ext4 pelo instalador).
+
+ 1. No Utilitário de Disco, clique no nível acima do container APFS (geralmente chamado “APPLE SSD …” ou “Kingston NVMe …” ou algo similar).
+ 2. Clique em Particionar… (Clicar em "+" apenas adiciona um volume na mesma partição).
+ 3. Aí sim você pode reduzir o espaço do container APFS e criar uma nova partição real (em ExFAT, FAT32 ou mesmo “Sem Formatar”)
+	  Memoria: Dia 20/09/2025 ==> 300 GB
+ 4. Essa partição é a que o Linux vai reconhecer separada, e nela você instala o sistema (formatando em ext4).
+
+# Instalando o Linux Mint
+
+@linuxmarkinstitute2025
+
+Baixar a iso. Optei por baixar a Cinamon disponível em
+https://pub.linuxmint.io/stable/22.2/linuxmint-22.2-cinnamon-64bit.iso
+
+Instalar o Balena Etcher
+
+```{bash  eval=FALSE}
+ brew install --cask balenaetcher
+```
+Select Image > Select PenDrive > Flash
+
+Para iniciar o computador aperte Alt quando soar o som de inicialização e inicialize o Cinamon em 64bits
+No terminal do Linux:
+```{bash  eval=FALSE}
+ sudo fdisk -l
+ 
+<!-- Disk /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors -->
+<!-- Units: sectors of 1 * 512 = 512 bytes -->
+<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
+<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
+
+<!-- Disk /dev/nvme0n1: 465.76 GiB, 500107862016 bytes, 976773168 sectors -->
+<!-- Disk model: KINGSTON SA2000M8500G                    -->
+<!-- Units: sectors of 1 * 512 = 512 bytes -->
+<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
+<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
+<!-- Disklabel type: gpt -->
+<!-- Disk identifier: 25040E6F-2001-4E4E-B14C-C788AD03D71D -->
+
+<!-- Device             Start       End   Sectors   Size Type -->
+<!-- /dev/nvme0n1p1        40    409639    409600   200M EFI System -->
+<!-- /dev/nvme0n1p2    409640 391034639 390625000 186.3G Apple APFS -->
+<!-- /dev/nvme0n1p3 391034640 976773127 585738488 279.3G Apple APFS -->
+
+<!-- Disk /dev/sda: 117.19 GiB, 125829120000 bytes, 245760000 sectors -->
+<!-- Disk model: ProductCode      -->
+<!-- Units: sectors of 1 * 512 = 512 bytes -->
+<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
+<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
+<!-- Disklabel type: dos -->
+<!-- Disk identifier: 0xd94bd83b -->
+
+<!-- Device     Boot   Start       End   Sectors   Size Id Type -->
+<!-- /dev/sda1  *         64   5967263   5967200   2.8G  0 Empty -->
+<!-- /dev/sda2          8452     18691     10240     5M ef EFI (FAT-12/16/32) -->
+<!-- /dev/sda3       5967872 245759999 239792128 114.3G 83 Linux -->
+
+```
+
+Já na instalção. Teclado *English (US, alt. intl.)*
+
+Quando entrar no particionamento manual:
+1. Selecione /dev/nvme0n1p3 (279 GB APFS).
+2. Mande formatar como ext4.
+3. Defina como ponto de montagem “/” (raiz do Linux).
+4. Certifique-se de que o instalador vai usar /dev/nvme0n1p1 (200 MB EFI) para o bootloader (GRUB).
+- Normalmente o instalador detecta isso sozinho.
+- Não formate a EFI, apenas use como /boot/efi.
+
+# Após a instalação
+
+```{bash eval=FALSE}
+sudo apt update
+sudo apt upgrade -y
+```
+
+## Google Chorme e outros utilitários
+
+```{bash}
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo apt -f install -y   # corrige dependências se faltar algo
+```
+
+## Tex
+
+```{bash eval=FALSE}
+sudo apt install -y texlive-full
+
+```
+
+
+## R e RStudio
+
+R base (repositório oficial do Mint/Ubuntu):
+```{bash eval=FALSE}
+sudo apt install -y r-base r-base-dev
+```
+
+
+RStudio: não está no apt padrão. Baixe o .deb mais recente em:
+https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb
+E instale com:
+
+```{bash eval=FALSE}
+cd ~/Downloads
+sudo dpkg -i rstudio-2025.09.0-387-amd64.deb
+sudo apt -f install -y
+```
+
+## Python
+
+O Mint já traz Python, mas configure o ambiente:
+```{bash eval=FALSE}
+sudo apt install -y python3 python3-pip python3-venv jupyter-notebook
+```
+
+Depois, crie ambientes isolados:
+
+```{bash eval=FALSE}
+python3 -m venv ~/venvs/ds
+source ~/venvs/ds/bin/activate
+pip install numpy pandas matplotlib seaborn scikit-learn jupyterlab
+```
+
+
+## Extras úteis
+
+Compiladores e libs comuns (R/Python precisam às vezes):
+
+```{bash eval=FALSE}
+sudo apt install -y build-essential libssl-dev libcurl4-openssl-dev libxml2-dev
+```
+
+
+## Git
+
+```{bash eval=FALSE}
+sudo apt install -y git
+git config --global user.name "Gustavo Givisiez"
+git config --global user.email "gh_naves@id.uff.br"
+```
+
+## QGIS
+
+```{bash eval=FALSE}
+sudo apt install -y qgis qgis-plugin-grass
+```
+
+

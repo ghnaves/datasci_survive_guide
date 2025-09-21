@@ -1,0 +1,168 @@
+---
+title: "Setup do Mac usando o Homebrew"
+author: "Gustavo Givisiez"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: journal
+    highlight: tango
+    code_folding: show
+    self_contained: true
+---
+
+
+# Setup do Mac usando o Homebrew
+
+## Homebrew
+
+```{bash eval=FALSE}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+## Adicionar ao shell (.zshrc ou .bashrc):
+
+```{bash eval=FALSE}         
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)' >> ~/.zshrc"
+source ~/.zshrc
+```
+
+## Ferramentas de linha de comando
+
+``` {bash eval=FALSE}        
+brew install git wget curl pandoc tree
+```
+
+## Configurar o Git
+
+```{bash eval=FALSE}
+git config --global user.name "Gustavo Givisiez"
+git config --global user.email "gh_naves@id.uff.br"
+git config --global core.editor "code --wait"
+```
+
+## Apps gráficos
+
+```{bash eval=FALSE}       
+brew install --cask iterm2 visual-studio-code
+```
+
+## R e RStudio
+
+```{bash  eval=FALSE}       
+brew install --cask r
+brew install --cask rstudio
+```
+
+### Criar ambiente virtual para ser usado no R:
+
+```{bash eval=FALSE}
+mkdir -p ~/projects ~/envs/python ~/bin
+# ambiente “ds” (venv) e pacotes básicos
+python3 -m venv ~/envs/python/ds
+source ~/envs/python/ds/bin/activate
+pip install --upgrade pip
+pip install jupyterlab ipykernel numpy pandas matplotlib seaborn scikit-learn
+pip install jupyterlab-git black ruff isort pytest
+
+# registra o kernel no Jupyter com nome amigável
+python -m ipykernel install --user --name "python-ds" --display-name "Python (ds)"
+deactivate
+```
+
+
+### Para ativar o Python depois
+```{bash eval=FALSE}       
+source ~/envs/python/ds/bin/activate
+jupyter lab
+```
+
+## PyCharm
+```{bash eval=FALSE}      
+brew install --cask pycharm-ce
+# ou Professional (paga, com recursos extras)
+# brew install --cask pycharm
+```
+
+## Python Global
+```{bash eval=FALSE}
+brew install python
+pip3 install jupyterlab ipykernel numpy pandas matplotlib seaborn scikit-learn
+brew install --cask pycharm-ce
+
+# Priorizar esse Python como instalação global
+eval "$(/opt/homebrew/bin/brew shellenv)"
+source ~/.zshrc
+```
+
+```{bash eval=FALSE}
+# para ver quais Pythons estão instalados
+which -a python3
+```
+
+## QGIS
+
+### Roseta
+
+```{bash eval=FALSE}     
+softwareupdate --install-rosetta --agree-to-license
+```
+
+### Qgis
+
+```{bash  eval=FALSE}     
+brew install --cask qgis
+```
+
+## TeX e TeXstudio
+
+```{bash  eval=FALSE} 
+#Base
+brew install --cask mactex
+#Completo
+brew install --cask texstudio
+#Para fórmulas
+brew install --cask latexit
+
+
+sudo tlmgr update --self --all
+sudo tlmgr install amsfonts lm
+sudo tlmgr update --self
+sudo tlmgr install amsmath amssymb geometry lmodern
+
+```
+
+## Softwares adicionais
+
+```{bash  eval=FALSE}   
+brew install --cask dropbox
+brew install --cask google-drive
+brew install --cask publish-or-perish 
+brew install --cask steam
+brew install --cask zotero
+brew install --cask google-chrome
+brew install --cask firefox
+brew install --cask spotify
+brew install --cask pika
+brew install --cask balenaetcher
+```
+
+## Atualizações periódicas
+
+```{bash eval=FALSE}      
+brew update
+brew upgrade
+brew upgrade --cask
+brew cleanup   # remove versões antigas
+```
+
+```{bash eval=FALSE} 
+brew list --cask --versions
+brew outdated --cask
+brew list --cask --versions
+```
+
+
+

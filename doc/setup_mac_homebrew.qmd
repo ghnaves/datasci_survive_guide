@@ -1,0 +1,105 @@
+---
+title: "Setup do Mac usando o Homebrew"
+author: "Gustavo Givisiez"
+date: today
+format: 
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    theme: journal
+    highlight-style: tango
+    code-fold: true
+    code-block-bg: true
+    code-block-border-left: "#31a354"
+    code-copy: true
+jupyter: python3
+---
+
+
+# Setup do Mac usando o Homebrew
+
+## Homebrew
+
+```{bash}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+## Adicionar ao shell (.zshrc ou .bashrc):
+
+```{bash}         
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)' >> ~/.zshrc"
+source ~/.zshrc
+```
+
+## Ferramentas de linha de comando
+
+``` {bash}        
+brew install git wget curl pandoc tree
+```
+
+## Apps gráficos
+
+```{bash}       
+brew install --cask iterm2 visual-studio-code
+```
+
+## R e RStudio
+
+```{bash}       
+brew install --cask r
+brew install --cask rstudio
+```
+
+### Criar ambiente virtual para ser usado no R:
+
+```{bash}       
+python3 -m venv ~/envs/python/ds
+source ~/envs/python/ds/bin/activate
+pip install --upgrade pip
+pip install jupyterlab ipykernel numpy pandas matplotlib seaborn scikit-learn
+deactivate
+```
+
+### Para ativar o Python depois
+```{bash}       
+source ~/envs/python/ds/bin/activate
+```
+
+## Python Global
+
+```{bash}
+brew install python
+pip3 install jupyterlab ipykernel numpy pandas matplotlib seaborn scikit-learn
+brew install --cask pycharm-ce
+eval "$(/opt/homebrew/bin/brew shellenv)"
+source ~/.zshrc
+```
+
+## QGIS
+
+### Roseta
+
+```{bash}     
+softwareupdate --install-rosetta --agree-to-license
+```
+
+### Qgis
+
+```{bash}     
+brew install --cask qgis
+```
+
+## Softwares adicionais
+
+```{bash}       
+brew install --cask zotero
+brew install --cask mactex
+brew install --cask google-chrome
+```
+
+## Atualizações periódicas
+
+```{bash}      
+brew upgrade --cask
+```
