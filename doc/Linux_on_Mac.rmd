@@ -11,8 +11,8 @@ output:
     highlight: tango
     code_folding: show
     self_contained: true
-bibliography: /Users/ghnaves/Zotero/Minha Biblioteca.bib
-csl: /Users/ghnaves/Zotero/styles/planeta-zotero-abnt.csl
+#bibliography: datasci_survive_guide.bib
+#csl: planeta-zotero-abnt.csl
 ---
 
 
@@ -113,19 +113,55 @@ sudo apt upgrade -y
 
 ## Google Chorme e outros utilitários
 
-```{bash}
+```{bash eval=FALSE}
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt -f install -y   # corrige dependências se faltar algo
 ```
 
-## Tex
+
+## Git
 
 ```{bash eval=FALSE}
-sudo apt install -y texlive-full
+sudo apt install -y git
+git config --global user.name "Seu usuário"
+git config --global user.email "seuemail@algumservidor.algumlugar"
+```
+
+### Configurar o github
+
+Gere uma nova chave:
+```{bash eval=FALSE}
+ssh-keygen -t ed25519 -C "seuemail@exemplo.com"
+```
+
+Copie a chave pública:
+
+```{bash eval=FALSE}
+cat ~/.ssh/id_ed25519.pub
+```
+Cole no GitHub em Settings > SSH and GPG Keys > New SSH Key
+
+Para puxar um projeto
+```{bash eval=FALSE}
+
+cd ~/Documentos   # ou outra pasta onde quer guardar o projeto
+git clone git@github.com:usuario/projeto.git
 
 ```
 
+## Tex
+
+Versão completa:
+```{bash eval=FALSE}
+sudo apt install -y texlive-full
+```
+
+Versão Enxuta:
+
+```{bash eval=FALSE}
+sudo apt install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+```
 
 ## R e RStudio
 
@@ -133,7 +169,6 @@ R base (repositório oficial do Mint/Ubuntu):
 ```{bash eval=FALSE}
 sudo apt install -y r-base r-base-dev
 ```
-
 
 RStudio: não está no apt padrão. Baixe o .deb mais recente em:
 https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb
@@ -160,7 +195,6 @@ source ~/venvs/ds/bin/activate
 pip install numpy pandas matplotlib seaborn scikit-learn jupyterlab
 ```
 
-
 ## Extras úteis
 
 Compiladores e libs comuns (R/Python precisam às vezes):
@@ -169,14 +203,16 @@ Compiladores e libs comuns (R/Python precisam às vezes):
 sudo apt install -y build-essential libssl-dev libcurl4-openssl-dev libxml2-dev
 ```
 
+## Zotero
 
-## Git
+siga o original em https://github.com/retorquere/zotero-deb/blob/master/README.md
 
-```{bash eval=FALSE}
-sudo apt install -y git
-git config --global user.name "Gustavo Givisiez"
-git config --global user.email "gh_naves@id.uff.br"
+```{bash}
+wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash
+sudo apt update
+sudo apt install zotero
 ```
+
 
 ## QGIS
 

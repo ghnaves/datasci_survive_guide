@@ -11,7 +11,7 @@
 
 <meta name="author" content="Gustavo Givisiez" />
 
-<meta name="date" content="2025-09-20" />
+<meta name="date" content="2025-09-21" />
 
 <title>Instalação de Linux no Mac</title>
 
@@ -1491,29 +1491,6 @@ margin-right: -30px;
 
 
 
-<style type="text/css">
-
-div.csl-bib-body { }
-div.csl-entry {
-clear: both;
-margin-bottom: 1em;
-}
-.hanging div.csl-entry {
-margin-left:2em;
-text-indent:-2em;
-}
-div.csl-left-margin {
-min-width:2em;
-float:left;
-}
-div.csl-right-inline {
-margin-left:2em;
-padding-left:1em;
-}
-div.csl-indent {
-margin-left: 2em;
-}
-</style>
 
 
 
@@ -1685,14 +1662,14 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Instalação de Linux no Mac</h1>
 <h4 class="author">Gustavo Givisiez</h4>
-<h4 class="date">2025-09-20</h4>
+<h4 class="date">2025-09-21</h4>
 
 </div>
 
 
 <div id="setup-do-mac" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Setup do Mac</h1>
-<p>Fonte: <span class="citation">Knows-Nada (2023)</span></p>
+<p>Fonte: <span class="citation">@knows-nada2023</span></p>
 <p>Muitas pessoas instalam Linux em seus Macs e, ao apagar completamente
 a partição do macOS, descobrem tarde demais que parte do hardware
 depende de firmwares que só existem dentro do sistema original. Esses
@@ -1754,7 +1731,7 @@ instala o sistema (formatando em ext4).</li>
 <div id="instalando-o-linux-mint" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Instalando o Linux
 Mint</h1>
-<p><span class="citation">Linux Mark Institute (2025)</span></p>
+<p><span class="citation">@linuxmarkinstitute2025</span></p>
 <p>Baixar a iso. Optei por baixar a Cinamon disponível em <a href="https://pub.linuxmint.io/stable/22.2/linuxmint-22.2-cinnamon-64bit.iso" class="uri">https://pub.linuxmint.io/stable/22.2/linuxmint-22.2-cinnamon-64bit.iso</a></p>
 <p>Instalar o Balena Etcher</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a> <span class="ex">brew</span> install <span class="at">--cask</span> balenaetcher</span></code></pre></div>
@@ -1793,26 +1770,75 @@ inicialização e inicialize o Cinamon em 64bits No terminal do Linux:</p>
 <span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda1</span>  <span class="pp">*</span>         64   5967263   5967200   2.8G  0 Empty <span class="at">--</span><span class="op">&gt;</span></span>
 <span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda2</span>          8452     18691     10240     5M ef EFI <span class="er">(</span><span class="ex">FAT-12/16/32</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
 <span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda3</span>       5967872 245759999 239792128 114.3G 83 Linux <span class="at">--</span><span class="op">&gt;</span></span></code></pre></div>
+<p>Já na instalção. Teclado <em>English (US, alt. intl.)</em></p>
 <p>Quando entrar no particionamento manual: 1. Selecione /dev/nvme0n1p3
 (279 GB APFS). 2. Mande formatar como ext4. 3. Defina como ponto de
 montagem “/” (raiz do Linux). 4. Certifique-se de que o instalador vai
-usar /dev/nvme0n1p1 (200 MB EFI) para o bootloader (GRUB). • Normalmente
-o instalador detecta isso sozinho. • Não formate a EFI, apenas use como
+usar /dev/nvme0n1p1 (200 MB EFI) para o bootloader (GRUB). - Normalmente
+o instalador detecta isso sozinho. - Não formate a EFI, apenas use como
 /boot/efi.</p>
-<div id="refs" class="references csl-bib-body" entry-spacing="1">
-<div id="ref-knows-nada2023" class="csl-entry">
-KNOWS-NADA. <strong>Putting <span>Linux</span> on your <span>Mac</span>?
-<span>Watch</span> out!</strong> <strong>r/linux4noobs</strong>. [<em>S.
-l.</em>]:
-https://www.reddit.com/r/linux4noobs/comments/18kde7q/putting_linux_on_your_mac_watch_out/,
-Dec. 2023. Accessed on: 19 Sept. 2025.
 </div>
-<div id="ref-linuxmarkinstitute2025" class="csl-entry">
-LINUX MARK INSTITUTE. <strong>Linux <span>Mint Installation
-Guide</span></strong>. <strong>LinuxMint</strong>. [<em>S. l.</em>]:
-https://linuxmint-installation-guide.readthedocs.io/en/latest/, 2025.
-Accessed on: 21 Sept. 2025.
+<div id="após-a-instalação" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Após a instalação</h1>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code></pre></div>
+<div id="google-chorme-e-outros-utilitários" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Google Chorme e
+outros utilitários</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">wget</span> https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> google-chrome-stable_current_amd64.deb</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span>   <span class="co"># corrige dependências se faltar algo</span></span></code></pre></div>
 </div>
+<div id="configurar-o-github" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Configurar o
+github</h2>
+<p>No Linux Mint, gere uma nova chave:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">&quot;seuemail@exemplo.com&quot;</span></span></code></pre></div>
+<p>Copie a chave pública:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
+<p>Cole no GitHub em Settings &gt; SSH and GPG Keys &gt; New SSH Key</p>
+<p>Para puxar um projeto</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">cd</span> ~/Documentos   <span class="co"># ou outra pasta onde quer guardar o projeto</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:usuario/projeto.git</span></code></pre></div>
+</div>
+<div id="tex" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Tex</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-full</span></code></pre></div>
+</div>
+<div id="r-e-rstudio" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> R e RStudio</h2>
+<p>R base (repositório oficial do Mint/Ubuntu):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> r-base r-base-dev</span></code></pre></div>
+<p>RStudio: não está no apt padrão. Baixe o .deb mais recente em: <a href="https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb" class="uri">https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb</a>
+E instale com:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> rstudio-2025.09.0-387-amd64.deb</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span></span></code></pre></div>
+</div>
+<div id="python" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Python</h2>
+<p>O Mint já traz Python, mas configure o ambiente:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> python3 python3-pip python3-venv jupyter-notebook</span></code></pre></div>
+<p>Depois, crie ambientes isolados:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ~/venvs/ds</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">source</span> ~/venvs/ds/bin/activate</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib seaborn scikit-learn jupyterlab</span></code></pre></div>
+</div>
+<div id="extras-úteis" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Extras úteis</h2>
+<p>Compiladores e libs comuns (R/Python precisam às vezes):</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> build-essential libssl-dev libcurl4-openssl-dev libxml2-dev</span></code></pre></div>
+</div>
+<div id="git" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Git</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> git</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Gustavo Givisiez&quot;</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">&quot;gh_naves@id.uff.br&quot;</span></span></code></pre></div>
+</div>
+<div id="qgis" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> QGIS</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> qgis qgis-plugin-grass</span></code></pre></div>
 </div>
 </div>
 
