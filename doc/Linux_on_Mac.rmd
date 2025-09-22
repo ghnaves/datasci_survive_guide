@@ -107,6 +107,56 @@ Quando entrar no particionamento manual:
 - Normalmente o instalador detecta isso sozinho.
 - Não formate a EFI, apenas use como /boot/efi.
 
+## Dual Boot
+Após a instalação o Linux, optei por instalar o rEFInd no Linux Mint. 
+
+### Testes iniciais
+
+Verifique se `/sys/firmware/efi` existe
+```{bash eval = FALSE}
+
+ls /sys/firmware/efi
+
+<!-- config_table  fw_platform_size  mok-variables  runtime-map -->
+<!-- efivars       fw_vendor         runtime        systab -->
+
+```
+
+Tenho `/sys/firmware/efi` e isso confirma que o Linux Mint está rodando em modo UEFI. Dessa forma optei por configurar o GRUB nativo do Linux para o dual Boot pois tive informaçõès que o rEFInd às vezes exige confirguaração de chaves e acessos no Mac e que sua instalação, às vezes, tem impedido o acesso ao Mac.
+
+### GRUB
+
+O GRUB já está instalado junto com o Mint, no EFI. Para ele detectar o macOS, é preciso habilitar e rodar o os-prober:
+
+```{bash eval = FALSE}
+sudo apt install os-prober
+
+sudo nano /etc/default/grub
+```
+
+Dentro do arquivo grub config (/etc/default/grub), tire o comentário (`#`) da linha `GRUB_DISABLE_OS_PROBER=false` e atualize o GRUB:
+
+
+```{bash eval = FALSE}
+sudo update-grub
+sudo os-prober
+```
+Não listou o Mac no boot. A solução foi ir para o rEFInd.
+
+### REFInd
+
+```{bash  eval = FALSE}
+sudo apt update
+sudo apt install refind
+
+```
+
+se o instalador não inciar automaticamente rode `sudo refind-install`
+
+para testar a instalação `sudo ls /boot/efi/EFI/refind` deve listar pelo menos os arquivos `refind.conf` e  `refind_x64.efi`
+
+
+
 # Instalação de Pacotes e Utilitários
 
 ```{bash eval=FALSE}

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Gustavo Givisiez" />
 
-<meta name="date" content="2025-09-21" />
+<meta name="date" content="2025-09-22" />
 
 <title>Instalação de Linux no Mac</title>
 
@@ -1662,7 +1662,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Instalação de Linux no Mac</h1>
 <h4 class="author">Gustavo Givisiez</h4>
-<h4 class="date">2025-09-21</h4>
+<h4 class="date">2025-09-22</h4>
 
 </div>
 
@@ -1781,94 +1781,138 @@ montagem “/” (raiz do Linux). 4. Certifique-se de que o instalador vai
 usar /dev/nvme0n1p1 (200 MB EFI) para o bootloader (GRUB). - Normalmente
 o instalador detecta isso sozinho. - Não formate a EFI, apenas use como
 /boot/efi.</p>
+<div id="dual-boot" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Dual Boot</h2>
+<p>Após a instalação o Linux, optei por instalar o rEFInd no Linux
+Mint.</p>
+<div id="testes-iniciais" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Testes
+iniciais</h3>
+<p>Verifique se <code>/sys/firmware/efi</code> existe</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">ls</span> /sys/firmware/efi</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">config_table</span>  fw_platform_size  mok-variables  runtime-map <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">efivars</span>       fw_vendor         runtime        systab <span class="at">--</span><span class="op">&gt;</span></span></code></pre></div>
+<p>Tenho <code>/sys/firmware/efi</code> e isso confirma que o Linux Mint
+está rodando em modo UEFI. Dessa forma optei por configurar o GRUB
+nativo do Linux para o dual Boot pois tive informaçõès que o rEFInd às
+vezes exige confirguaração de chaves e acessos no Mac e que sua
+instalação, às vezes, tem impedido o acesso ao Mac.</p>
+</div>
+<div id="grub" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> GRUB</h3>
+<p>O GRUB já está instalado junto com o Mint, no EFI. Para ele detectar
+o macOS, é preciso habilitar e rodar o os-prober:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> apt install os-prober</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/default/grub</span></code></pre></div>
+<p>Dentro do arquivo grub config (/etc/default/grub), tire o comentário
+(<code>#</code>) da linha <code>GRUB_DISABLE_OS_PROBER=false</code> e
+atualize o GRUB:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> update-grub</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">sudo</span> os-prober</span></code></pre></div>
+<p>Não listou o Mac no boot. A solução foi ir para o rEFInd.</p>
+</div>
+<div id="refind" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> REFInd</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">sudo</span> apt install refind</span></code></pre></div>
+<p>se o instalador não inciar automaticamente rode
+<code>sudo refind-install</code></p>
+<p>para testar a instalação <code>sudo ls /boot/efi/EFI/refind</code>
+deve listar pelo menos os arquivos <code>refind.conf</code> e
+<code>refind_x64.efi</code></p>
+</div>
+</div>
 </div>
 <div id="instalação-de-pacotes-e-utilitários" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Instalação de Pacotes e
 Utilitários</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code></pre></div>
 <div id="google-chorme-e-outros-utilitários" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Google Chorme e
 outros utilitários</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">wget</span> https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> google-chrome-stable_current_amd64.deb</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span>   <span class="co"># corrige dependências se faltar algo</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">wget</span> https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> google-chrome-stable_current_amd64.deb</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span>   <span class="co"># corrige dependências se faltar algo</span></span></code></pre></div>
 </div>
 <div id="git" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Git</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> git</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Seu usuário&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">&quot;seuemail@algumservidor.algumlugar&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> git</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Seu usuário&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">&quot;seuemail@algumservidor.algumlugar&quot;</span></span></code></pre></div>
 <div id="configurar-o-github" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Configurar o
 github</h3>
 <p>Gere uma nova chave:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">&quot;seuemail@exemplo.com&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">&quot;seuemail@exemplo.com&quot;</span></span></code></pre></div>
 <p>Copie a chave pública:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
 <p>Cole no GitHub em Settings &gt; SSH and GPG Keys &gt; New SSH Key</p>
 <p>Para puxar um projeto</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">cd</span> ~/Documentos   <span class="co"># ou outra pasta onde quer guardar o projeto</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:usuario/projeto.git</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">cd</span> ~/Documentos   <span class="co"># ou outra pasta onde quer guardar o projeto</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:usuario/projeto.git</span></code></pre></div>
 <p>Para empurrar um projeto</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Alterações dentro do Linux Mint&quot;</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Alterações dentro do Linux Mint&quot;</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
 </div>
 </div>
 <div id="tex" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Tex</h2>
 <p>Versão completa:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-full</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-full</span></code></pre></div>
 <p>Versão Enxuta:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra</span></code></pre></div>
 </div>
 <div id="r-e-rstudio" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> R e RStudio</h2>
 <p>R base (repositório oficial do Mint/Ubuntu):</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> r-base r-base-dev</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> r-base r-base-dev</span></code></pre></div>
 <p>RStudio: não está no apt padrão. Baixe o .deb mais recente em: <a href="https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb" class="uri">https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb</a>
 E instale com:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> rstudio-2025.09.0-387-amd64.deb</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> rstudio-2025.09.0-387-amd64.deb</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span></span></code></pre></div>
 </div>
 <div id="python" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> Python</h2>
 <p>O Mint já traz Python, mas configure o ambiente:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> python3 python3-pip python3-venv jupyter-notebook</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> python3 python3-pip python3-venv jupyter-notebook</span></code></pre></div>
 <p>Depois, crie ambientes isolados:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ~/venvs/ds</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">source</span> ~/venvs/ds/bin/activate</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib seaborn scikit-learn jupyterlab</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ~/venvs/ds</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="bu">source</span> ~/venvs/ds/bin/activate</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib seaborn scikit-learn jupyterlab</span></code></pre></div>
 </div>
 <div id="extras-úteis" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Extras úteis</h2>
 <p>Compiladores e libs comuns (R/Python precisam às vezes):</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> build-essential libssl-dev libcurl4-openssl-dev libxml2-dev</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> build-essential libssl-dev libcurl4-openssl-dev libxml2-dev</span></code></pre></div>
 </div>
 <div id="zotero" class="section level2" number="3.7">
 <h2><span class="header-section-number">3.7</span> Zotero</h2>
 <p>siga o original em <a href="https://github.com/retorquere/zotero-deb/blob/master/README.md" class="uri">https://github.com/retorquere/zotero-deb/blob/master/README.md</a></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh <span class="kw">|</span> <span class="fu">sudo</span> bash</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="fu">sudo</span> apt install zotero</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh <span class="kw">|</span> <span class="fu">sudo</span> bash</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="fu">sudo</span> apt install zotero</span></code></pre></div>
 </div>
 <div id="qgis" class="section level2" number="3.8">
 <h2><span class="header-section-number">3.8</span> QGIS</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> qgis qgis-plugin-grass</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> qgis qgis-plugin-grass</span></code></pre></div>
 </div>
 <div id="steam" class="section level2" number="3.9">
 <h2><span class="header-section-number">3.9</span> Steam</h2>
 <p>O Steam está no repositório “multiverse” (no Ubuntu/Mint).
 Normalmente já vem habilitado, mas se quiser garantir:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> software-properties-common</span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository multiverse</span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> software-properties-common</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository multiverse</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
 <p>Com o repositório ativo</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> steam</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> steam</span></code></pre></div>
 </div>
 </div>
 <div id="drives-e-outras-configurações" class="section level1" number="4">
@@ -1878,29 +1922,29 @@ configurações</h1>
 <h2><span class="header-section-number">4.1</span> Vídeo</h2>
 <p>O monitor adicional ficou com o texto gigante.</p>
 <p>Primeiro Diagnóstico para avaliar qual a resolução limite.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">xrandr</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Screen</span> 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">eDP-1</span> connected primary 2560x1600+0+1080 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">286mm</span> x 179mm <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1600</span>     59.97<span class="pp">*</span>+ <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1440</span>     59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">360x202</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">320x180</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-2</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-2</span> connected 1920x1080+0+0 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">598mm</span> x 336mm <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1920x1080</span>     60.00<span class="pp">*</span>+  50.00    59.94   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1680x1050</span>     59.88 <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a><span class="op">&lt;</span>!--   <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">xrandr</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Screen</span> 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">eDP-1</span> connected primary 2560x1600+0+1080 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">286mm</span> x 179mm <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1600</span>     59.97<span class="pp">*</span>+ <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1440</span>     59.97   <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">360x202</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">320x180</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-2</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-2</span> connected 1920x1080+0+0 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">598mm</span> x 336mm <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1920x1080</span>     60.00<span class="pp">*</span>+  50.00    59.94   <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1680x1050</span>     59.88 <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="op">&lt;</span>!--   <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span></code></pre></div>
 <p>Isso lista os monitores e as resoluções detectadas. A HDMI 2 é
 limitada a 1920x1080 o que está igual ao Mac M1.</p>
 <p>Tentei alterar a escala no ajuste do monitor mas o Minte está
 alterando os ois monitores simultaneamente.</p>
 <p>Optei por usar escalonamento fracionado por monitor ativanado o
 “Fractional Scaling” no Cinnamon, que usa uma flag experimental:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">gsettings</span> set org.cinnamon.muffin experimental-features <span class="st">&quot;[&#39;scale-monitor-framebuffer&#39;]&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">gsettings</span> set org.cinnamon.muffin experimental-features <span class="st">&quot;[&#39;scale-monitor-framebuffer&#39;]&quot;</span></span></code></pre></div>
 <p>Depois:</p>
 <p>Reinicie a sessão (ou o computador).</p>
 <p>Vá em Menu &gt; Configuraçoes do Sistema &gt; Monitor</p>
@@ -1912,11 +1956,11 @@ monitor (ex.: 100%, 125%, 150%). Assim, você pode deixar o interno
 <code>pos</code> ajusta a posição do monitor. Por exemplo
 <code>pos 0x-2300</code> coloca o monitor HDMI-2 acima do moniotor
 eDP-1. Não entedi as contas. Foi na tentativa e erro…</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1  <span class="at">--mode</span> 2560x1600  <span class="at">--scale</span> 1.2x1.2 <span class="at">--pos</span> 0x0         </span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>       <span class="ex">--output</span> HDMI-2 <span class="at">--mode</span> 1920x1080  <span class="at">--scale</span> 2x2     <span class="at">--pos</span> 0x-2300</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1  <span class="at">--mode</span> 2560x1600  <span class="at">--scale</span> 1.2x1.2 <span class="at">--pos</span> 0x0         </span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>       <span class="ex">--output</span> HDMI-2 <span class="at">--mode</span> 1920x1080  <span class="at">--scale</span> 2x2     <span class="at">--pos</span> 0x-2300</span></code></pre></div>
 <p>Para resetar tudo:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="dt">\</span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>       <span class="at">--output</span> HDMI-2 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="at">--right-of</span> eDP-1</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="dt">\</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>       <span class="at">--output</span> HDMI-2 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="at">--right-of</span> eDP-1</span></code></pre></div>
 </div>
 </div>
 
