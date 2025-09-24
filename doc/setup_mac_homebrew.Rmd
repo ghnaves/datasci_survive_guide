@@ -66,11 +66,12 @@ Adicionar no GitHub
 brew install --cask iterm2 visual-studio-code
 ```
 
-## R e RStudio
+## R, RStudio e Positon
 
 ```{bash  eval=FALSE}       
 brew install --cask r
 brew install --cask rstudio
+brew install --cask positron
 ```
 
 ### Criar ambiente virtual para ser usado no R:

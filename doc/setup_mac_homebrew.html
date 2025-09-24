@@ -11,7 +11,7 @@
 
 <meta name="author" content="Gustavo Givisiez" />
 
-<meta name="date" content="2025-09-11" />
+<meta name="date" content="2025-09-24" />
 
 <title>Setup do Mac usando o Homebrew</title>
 
@@ -1662,7 +1662,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Setup do Mac usando o Homebrew</h1>
 <h4 class="author">Gustavo Givisiez</h4>
-<h4 class="date">2025-09-11</h4>
+<h4 class="date">2025-09-24</h4>
 
 </div>
 
@@ -1687,92 +1687,120 @@ de comando</h2>
 </div>
 <div id="configurar-o-git" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Configurar o Git</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Gustavo Givisiez&quot;</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;&lt;Seu nome aqui&gt;&quot;</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">&quot;gh_naves@id.uff.br&quot;</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> core.editor <span class="st">&quot;code --wait&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> seuemail@algo.algumlugar</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="bu">eval</span> <span class="st">&quot;</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">ssh-add</span> <span class="at">--apple-use-keychain</span> ~/.ssh/id_ed25519</span></code></pre></div>
+<div id="copiar-a-chave-pública" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Copiar a chave
+pública</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
+<p>Adicionar no GitHub * Vá em Settings &gt; SSH and GPG Keys &gt; New
+SSH key * Cole a chave copiada * Dê um nome</p>
+</div>
 </div>
 <div id="apps-gráficos" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Apps gráficos</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> iterm2 visual-studio-code</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> iterm2 visual-studio-code</span></code></pre></div>
 </div>
-<div id="r-e-rstudio" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> R e RStudio</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> r</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> rstudio</span></code></pre></div>
+<div id="r-rstudio-e-positon" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> R, RStudio e
+Positon</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> r</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> rstudio</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> positron</span></code></pre></div>
 <div id="criar-ambiente-virtual-para-ser-usado-no-r" class="section level3" number="1.6.1">
 <h3><span class="header-section-number">1.6.1</span> Criar ambiente
 virtual para ser usado no R:</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/projects ~/envs/python ~/bin</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co"># ambiente “ds” (venv) e pacotes básicos</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ~/envs/python/ds</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="bu">source</span> ~/envs/python/ds/bin/activate</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> pip</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab ipykernel numpy pandas matplotlib seaborn scikit-learn</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab-git black ruff isort pytest</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co"># registra o kernel no Jupyter com nome amigável</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> <span class="st">&quot;python-ds&quot;</span> <span class="at">--display-name</span> <span class="st">&quot;Python (ds)&quot;</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="ex">deactivate</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/projects ~/envs/python ~/bin</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co"># ambiente “ds” (venv) e pacotes básicos</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ~/envs/python/ds</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="bu">source</span> ~/envs/python/ds/bin/activate</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> pip</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab ipykernel numpy pandas matplotlib seaborn scikit-learn</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab-git black ruff isort pytest</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co"># registra o kernel no Jupyter com nome amigável</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> <span class="st">&quot;python-ds&quot;</span> <span class="at">--display-name</span> <span class="st">&quot;Python (ds)&quot;</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="ex">deactivate</span></span></code></pre></div>
 </div>
 <div id="para-ativar-o-python-depois" class="section level3" number="1.6.2">
 <h3><span class="header-section-number">1.6.2</span> Para ativar o
 Python depois</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">source</span> ~/envs/python/ds/bin/activate</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="bu">source</span> ~/envs/python/ds/bin/activate</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre></div>
 </div>
 </div>
 <div id="pycharm" class="section level2" number="1.7">
 <h2><span class="header-section-number">1.7</span> PyCharm</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> pycharm-ce</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co"># ou Professional (paga, com recursos extras)</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># brew install --cask pycharm</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> pycharm-ce</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co"># ou Professional (paga, com recursos extras)</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co"># brew install --cask pycharm</span></span></code></pre></div>
 </div>
 <div id="python-global" class="section level2" number="1.8">
 <h2><span class="header-section-number">1.8</span> Python Global</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">brew</span> install python</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">pip3</span> install jupyterlab ipykernel numpy pandas matplotlib seaborn scikit-learn</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> pycharm-ce</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># Priorizar esse Python como instalação global</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="bu">eval</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">/opt/homebrew/bin/brew</span> shellenv<span class="va">)</span><span class="st">&quot;</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># para ver quais Pythons estão instalados</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">which</span> <span class="at">-a</span> python3</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">brew</span> install python</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">pip3</span> install jupyterlab ipykernel numpy pandas matplotlib seaborn scikit-learn</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> pycharm-ce</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co"># Priorizar esse Python como instalação global</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="bu">eval</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">/opt/homebrew/bin/brew</span> shellenv<span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># para ver quais Pythons estão instalados</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">which</span> <span class="at">-a</span> python3</span></code></pre></div>
 </div>
 <div id="qgis" class="section level2" number="1.9">
 <h2><span class="header-section-number">1.9</span> QGIS</h2>
 <div id="roseta" class="section level3" number="1.9.1">
 <h3><span class="header-section-number">1.9.1</span> Roseta</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">softwareupdate</span> <span class="at">--install-rosetta</span> <span class="at">--agree-to-license</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">softwareupdate</span> <span class="at">--install-rosetta</span> <span class="at">--agree-to-license</span></span></code></pre></div>
 </div>
 <div id="qgis-1" class="section level3" number="1.9.2">
 <h3><span class="header-section-number">1.9.2</span> Qgis</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> qgis</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> qgis</span></code></pre></div>
 </div>
 </div>
-<div id="softwares-adicionais" class="section level2" number="1.10">
-<h2><span class="header-section-number">1.10</span> Softwares
+<div id="tex-e-texstudio" class="section level2" number="1.10">
+<h2><span class="header-section-number">1.10</span> TeX e TeXstudio</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co">#Base</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> mactex</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co">#Completo</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> texstudio</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co">#Para fórmulas</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> latexit</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="fu">sudo</span> tlmgr update <span class="at">--self</span> <span class="at">--all</span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="fu">sudo</span> tlmgr install amsfonts lm</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="fu">sudo</span> tlmgr update <span class="at">--self</span></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="fu">sudo</span> tlmgr install amsmath amssymb geometry lmodern</span></code></pre></div>
+</div>
+<div id="softwares-adicionais" class="section level2" number="1.11">
+<h2><span class="header-section-number">1.11</span> Softwares
 adicionais</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> dropbox</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> google-drive</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> publish-or-perish </span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> steam</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> zotero</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> mactex</span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> google-chrome</span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> firefox</span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> spotify</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> dropbox</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> google-drive</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> publish-or-perish </span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> steam</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> zotero</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> google-chrome</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> firefox</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> spotify</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> pika</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> balenaetcher</span></code></pre></div>
 </div>
-<div id="atualizações-periódicas" class="section level2" number="1.11">
-<h2><span class="header-section-number">1.11</span> Atualizações
+<div id="atualizações-periódicas" class="section level2" number="1.12">
+<h2><span class="header-section-number">1.12</span> Atualizações
 periódicas</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">brew</span> update</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">brew</span> upgrade</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="ex">brew</span> upgrade <span class="at">--cask</span></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="ex">brew</span> cleanup   <span class="co"># remove versões antigas</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">brew</span> list <span class="at">--cask</span> <span class="at">--versions</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">brew</span> outdated <span class="at">--cask</span></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="ex">brew</span> list <span class="at">--cask</span> <span class="at">--versions</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">brew</span> update</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="ex">brew</span> upgrade</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="ex">brew</span> upgrade <span class="at">--cask</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="ex">brew</span> cleanup   <span class="co"># remove versões antigas</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">brew</span> list <span class="at">--cask</span> <span class="at">--versions</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="ex">brew</span> outdated <span class="at">--cask</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="ex">brew</span> list <span class="at">--cask</span> <span class="at">--versions</span></span></code></pre></div>
 </div>
 </div>
 
