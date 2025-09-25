@@ -223,7 +223,6 @@ Para ele detectar o macOS, é preciso habilitar e rodar o os-prober:
 
 ```{bash eval = FALSE}
 sudo apt install os-prober
-
 sudo nano /etc/default/grub
 ```
 
@@ -237,7 +236,7 @@ sudo os-prober
 Não listou o Mac no boot.
 A solução foi ir para o rEFInd.
 
-### REFInd
+### rEFInd
 
 ```{bash  eval = FALSE}
 sudo apt update
@@ -249,15 +248,6 @@ se o instalador não inciar automaticamente rode `sudo refind-install`
 
 para testar a instalação `sudo ls /boot/efi/EFI/refind` deve listar pelo menos os arquivos `refind.conf` e `refind_x64.efi`
 
-funcionou com as seguintes opçòes de boot: \* EFI/ubuntu/grubx64.efi ==\> GRUB do Linux Mint
-
--   Boot Fallback boot launcher ==\> arquivo de emergência da EFI (raramente usado)
-
--   boot/vmlinuz-6.14.0-29 ==\> kernel do Mint direto (sem GRUB)
-
--   Boot macOS from Preboot ==\> auxiliar/recovery (não é o Mavericks principal)
-
--   Boot macOS from SSF ==\> seu macOS Mavericks
 
 ## Instalação de Pacotes e Utilitários
 

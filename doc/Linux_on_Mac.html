@@ -1871,8 +1871,7 @@ instalação, às vezes, tem impedido o acesso ao Mac.</p>
 <p>O GRUB já está instalado junto com o Mint, no EFI. Para ele detectar
 o macOS, é preciso habilitar e rodar o os-prober:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">sudo</span> apt install os-prober</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/default/grub</span></code></pre></div>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/default/grub</span></code></pre></div>
 <p>Dentro do arquivo grub config (/etc/default/grub), tire o comentário
 (<code>#</code>) da linha <code>GRUB_DISABLE_OS_PROBER=false</code> e
 atualize o GRUB:</p>
@@ -1881,7 +1880,7 @@ atualize o GRUB:</p>
 <p>Não listou o Mac no boot. A solução foi ir para o rEFInd.</p>
 </div>
 <div id="refind" class="section level3" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> REFInd</h3>
+<h3><span class="header-section-number">3.2.3</span> rEFInd</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">sudo</span> apt install refind</span></code></pre></div>
 <p>se o instalador não inciar automaticamente rode
@@ -1889,17 +1888,6 @@ atualize o GRUB:</p>
 <p>para testar a instalação <code>sudo ls /boot/efi/EFI/refind</code>
 deve listar pelo menos os arquivos <code>refind.conf</code> e
 <code>refind_x64.efi</code></p>
-<p>funcionou com as seguintes opçòes de boot: * EFI/ubuntu/grubx64.efi
-==&gt; GRUB do Linux Mint</p>
-<ul>
-<li><p>Boot Fallback boot launcher ==&gt; arquivo de emergência da EFI
-(raramente usado)</p></li>
-<li><p>boot/vmlinuz-6.14.0-29 ==&gt; kernel do Mint direto (sem
-GRUB)</p></li>
-<li><p>Boot macOS from Preboot ==&gt; auxiliar/recovery (não é o
-Mavericks principal)</p></li>
-<li><p>Boot macOS from SSF ==&gt; seu macOS Mavericks</p></li>
-</ul>
 </div>
 </div>
 <div id="instalação-de-pacotes-e-utilitários" class="section level2" number="3.3">
