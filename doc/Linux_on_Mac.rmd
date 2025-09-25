@@ -11,10 +11,12 @@ output:
     highlight: tango
     code_folding: show
     self_contained: true
-#bibliography: ~/projects/datasci_survive_guide.bib
-#csl: ~/projects/planeta-zotero-abnt.csl
+#bibliography: ~/projects/datasci_survive_guide/datasci_survive_guide.bib
+#csl: ~/projects/datasci_survive_guide/planeta-zotero-abnt.csl
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -24,23 +26,35 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Fonte: @knows-nada2023
 
-Muitas pessoas instalam Linux em seus Macs e, ao apagar completamente a partição do macOS, descobrem tarde demais que parte do hardware depende de firmwares que só existem dentro do sistema original. Esses firmwares, como os de Wi-Fi e Bluetooth, são atualizados pelo macOS sempre que surge um novo padrão, e sem a partição do sistema original não há como recebê-los. Por isso, antes de instalar o Linux, é essencial preservar um espaço do disco com o macOS funcionando.
+Muitas pessoas instalam Linux em seus Macs e, ao apagar completamente a partição do macOS, descobrem tarde demais que parte do hardware depende de firmwares que só existem dentro do sistema original.
+Esses firmwares, como os de Wi-Fi e Bluetooth, são atualizados pelo macOS sempre que surge um novo padrão, e sem a partição do sistema original não há como recebê-los.
+Por isso, antes de instalar o Linux, é essencial preservar um espaço do disco com o macOS funcionando.
 
-O procedimento recomendado começa dentro do próprio macOS. Ou seja, por segurança, é prudente mante-lo instalo no HD ou instalar uma versão do MacOS mais parcimoniosa. Por exemplo, para computadores Intel, ligar o Mac e imediatamente segurar `Shift + Option + ⌘ + R` até aparecer o logotipo da Apple ou um globo girando instala a versão que veio de fábrica (ou a mais próxima disponível). Outras opções são `Option + ⌘ + R` que instala a versão mais recente compatível com o Mac, ou ainda `⌘ + R` que reinstala a versão atual do macOS instalada no seu Mac.
+O procedimento recomendado começa dentro do próprio macOS.
+Ou seja, por segurança, é prudente mante-lo instalo no HD ou instalar uma versão do MacOS mais parcimoniosa.
+Por exemplo, para computadores Intel, ligar o Mac e imediatamente segurar `Shift + Option + ⌘ + R` até aparecer o logotipo da Apple ou um globo girando instala a versão que veio de fábrica (ou a mais próxima disponível).
+Outras opções são `Option + ⌘ + R` que instala a versão mais recente compatível com o Mac, ou ainda `⌘ + R` que reinstala a versão atual do macOS instalada no seu Mac.
 
-Após esses preparativos, abra o Utilitário de Disco, clique com o botão direito no disco principal e escolha a opção de particionar. Crie uma nova partição em ExFAT, definindo o tamanho que pretende reservar para o Linux, mas deixando espaço suficiente para que o macOS siga funcionando (o Utilitário de Disco te impede de instalar um espaço maior que o mínimo necessário para o MacOS rodar). Após aplicar a mudança, reinicie o computador pelo instalador do Linux. Durante a instalação, **nunca escolha a opção de usar o disco inteiro**. Selecione o modo manual, localize a partição criada anteriormente (identificada pelo tamanho), apague-a e configure o Linux nesse espaço livre.
+Após esses preparativos, abra o Utilitário de Disco, clique com o botão direito no disco principal e escolha a opção de particionar.
+Crie uma nova partição em ExFAT, definindo o tamanho que pretende reservar para o Linux, mas deixando espaço suficiente para que o macOS siga funcionando (o Utilitário de Disco te impede de instalar um espaço maior que o mínimo necessário para o MacOS rodar).
+Após aplicar a mudança, reinicie o computador pelo instalador do Linux.
+Durante a instalação, **nunca escolha a opção de usar o disco inteiro**.
+Selecione o modo manual, localize a partição criada anteriormente (identificada pelo tamanho), apague-a e configure o Linux nesse espaço livre.
 
-Concluída a instalação, o Mac passará a iniciar automaticamente no Linux. Caso precise voltar ao macOS, é possível manter pressionada a tecla `Option` (`Alt`) durante a inicialização para escolher o sistema, embora isso exija apertar a tecla no tempo certo. Para facilitar o processo, muitos usuários instalam o rEFInd, que funciona melhor que o GRUB nos Macs e permite alternar entre Linux e macOS de forma confiável.
+Concluída a instalação, o Mac passará a iniciar automaticamente no Linux.
+Caso precise voltar ao macOS, é possível manter pressionada a tecla `Option` (`Alt`) durante a inicialização para escolher o sistema, embora isso exija apertar a tecla no tempo certo.
+Para facilitar o processo, muitos usuários instalam o rEFInd, que funciona melhor que o GRUB nos Macs e permite alternar entre Linux e macOS de forma confiável.
 
-Com esse arranjo, você mantém o macOS disponível apenas para as raras ocasiões em que for necessário atualizar firmwares ou acessar recursos exclusivos, enquanto o Linux roda normalmente no dia a dia. Se em algum momento algo deixar de funcionar no Linux, provavelmente será por falta de firmware; nesse caso, basta inicializar o macOS, atualizá-lo e copiar os arquivos necessários. Dessa forma, evita-se dores de cabeça comuns entre usuários que apagam totalmente o sistema da Apple ao instalar o Linux.
+Com esse arranjo, você mantém o macOS disponível apenas para as raras ocasiões em que for necessário atualizar firmwares ou acessar recursos exclusivos, enquanto o Linux roda normalmente no dia a dia.
+Se em algum momento algo deixar de funcionar no Linux, provavelmente será por falta de firmware; nesse caso, basta inicializar o macOS, atualizá-lo e copiar os arquivos necessários.
+Dessa forma, evita-se dores de cabeça comuns entre usuários que apagam totalmente o sistema da Apple ao instalar o Linux.
 
 Para instalar Linux, você precisa criar um novo container/partição fora do APFS, em formato “espaço livre” (que depois será formatado como ext4 pelo instalador).
 
- 1. No Utilitário de Disco, clique no nível acima do container APFS (geralmente chamado “APPLE SSD …” ou “Kingston NVMe …” ou algo similar).
- 2. Clique em Particionar… (Clicar em "+" apenas adiciona um volume na mesma partição).
- 3. Aí sim você pode reduzir o espaço do container APFS e criar uma nova partição real (em ExFAT, FAT32 ou mesmo “Sem Formatar”)
-	  Memoria: Dia 20/09/2025 ==> 300 GB
- 4. Essa partição é a que o Linux vai reconhecer separada, e nela você instala o sistema (formatando em ext4).
+1.  No Utilitário de Disco, clique no nível acima do container APFS (geralmente chamado “APPLE SSD …” ou “Kingston NVMe …” ou algo similar).
+2.  Clique em Particionar… (Clicar em "+" apenas adiciona um volume na mesma partição).
+3.  Aí sim você pode reduzir o espaço do container APFS e criar uma nova partição real (em ExFAT, FAT32 ou mesmo “Sem Formatar”) Memoria: Dia 20/09/2025 ==\> 300 GB
+4.  Essa partição é a que o Linux vai reconhecer separada, e nela você instala o sistema (formatando em ext4).
 
 # Instalando o Linux Mint
 
@@ -48,19 +62,23 @@ Para instalar Linux, você precisa criar um novo container/partição fora do AP
 
 Foi instalado em um MacBook Pro Early 2015 Intel i7, com 16 GB e SSD de 512 GB
 
-Baixar a iso. Optei por baixar a Cinamon disponível em
-https://pub.linuxmint.io/stable/22.2/linuxmint-22.2-cinnamon-64bit.iso
+Baixar a iso.
+Optei por baixar a Cinamon disponível em <https://pub.linuxmint.io/stable/22.2/linuxmint-22.2-cinnamon-64bit.iso>
 
 Instalar o Balena Etcher
 
 ```{bash  eval=FALSE}
  brew install --cask balenaetcher
 ```
-Select Image > Select PenDrive > Flash
+
+Select Image \> Select PenDrive \> Flash
 
 Para iniciar o computador aperte Alt quando soar o som de inicialização e inicialize o Cinamon em 64bits
 
-No terminal do Linux:
+## Formatação MacBook 12,1
+
+No terminal do Linux do computador MacBook 12,1
+
 ```{bash  eval=FALSE}
  sudo fdisk -l
  
@@ -97,22 +115,95 @@ No terminal do Linux:
 
 ```
 
-Já na instalção. Teclado *English (US, alt. intl.)*
-
-Quando entrar no particionamento manual:
-1. Selecione /dev/nvme0n1p3 (279 GB APFS).
-2. Mande formatar como ext4.
-3. Defina como ponto de montagem “/” (raiz do Linux).
-4. Certifique-se de que o instalador vai usar /dev/nvme0n1p1 (200 MB EFI) para o bootloader (GRUB).
+Quando entrar no particionamento manual: 1.
+Selecione /dev/nvme0n1p3 (279 GB APFS).
+2.
+Mande formatar como ext4.
+3.
+Defina como ponto de montagem “/” (raiz do Linux).
+4.
+Certifique-se de que o instalador vai usar /dev/nvme0n1p1 (200 MB EFI) para o bootloader (GRUB).
 - Normalmente o instalador detecta isso sozinho.
 - Não formate a EFI, apenas use como /boot/efi.
 
+## Formatação MacBook 11,3
+
+No terminal do Linux do computador MacBook 11,3
+
+```{bash  eval=FALSE}
+ sudo fdisk -l
+<!-- Disk /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors -->
+<!-- Units: sectors of 1 * 512 = 512 bytes -->
+<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
+<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
+
+<!-- Disk /dev/sda: 465.92 GiB, 500277790720 bytes, 977105060 sectors -->
+<!-- Disk model: APPLE SSD SM0512 -->
+<!-- Units: sectors of 1 * 512 = 512 bytes -->
+<!-- Sector size (logical/physical): 512 bytes / 4096 bytes -->
+<!-- I/O size (minimum/optimal): 4096 bytes / 4096 bytes -->
+<!-- Disklabel type: gpt -->
+<!-- Disk identifier: E8D2B5D4-7F47-4B39-A216-5D77DAD9D793 -->
+
+<!-- Device         Start       End   Sectors   Size Type -->
+<!-- /dev/sda1         40    409639    409600   200M EFI System -->
+<!-- /dev/sda2     409640 195722135 195312496  93.1G Apple APFS -->
+<!-- /dev/sda3  195722136 977105023 781382888 372.6G Apple APFS -->
+
+<!-- Disk /dev/sdb: 117.19 GiB, 125829120000 bytes, 245760000 sectors -->
+<!-- Disk model: ProductCode      -->
+<!-- Units: sectors of 1 * 512 = 512 bytes -->
+<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
+<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
+<!-- Disklabel type: dos -->
+<!-- Disk identifier: 0xd94bd83b -->
+
+<!-- Device     Boot   Start       End   Sectors   Size Id Type -->
+<!-- /dev/sdb1  *         64   5967263   5967200   2.8G  0 Empty -->
+<!-- /dev/sdb2          8452     18691     10240     5M ef EFI (FAT-12/16/32) -->
+<!-- /dev/sdb3       5967872 245759999 239792128 114.3G 83 Linux -->
+ 
+```
+
+Quando entrar no particionamento manual:
+1. Selecione /dev/sda3 (372.6G Apple APFS).
+2. Mande formatar como ext4.
+3. Defina como ponto de montagem “/” (raiz do Linux).
+4. Certifique-se de que o instalador vai usar /dev/sda1 (200 MB EFI System) para o boot.
+- Normalmente o instalador detecta isso sozinho mas, nesse Mac não detectou.
+- Não formate a EFI.
+
+## Instalação propriamente dita
+
+Já na instalção.
+Teclado *English (US, alt. intl.)*
+
+# Após a reinicialização
+
+## Reconhecimento do chip Wi-Fi Broadcom
+
+Em Macs Intel mais antigos o Linux instala e roda, mas o chip Wi-Fi Broadcom não é reconhecido automaticamente porque o firmware é proprietário.
+Para ver qual chip está na maáquina:
+
+```{bash eval=FALSE}
+lshw -C network
+<!-- BCM4360 802.11ac -->
+```
+
+Na sequencia:
+
+```{bash eval=FALSE}
+sudo apt update
+```
+
 ## Dual Boot
-Após a instalação o Linux, optei por instalar o rEFInd no Linux Mint. 
+
+Após a instalação o Linux, optei por instalar o rEFInd no Linux Mint.
 
 ### Testes iniciais
 
 Verifique se `/sys/firmware/efi` existe
+
 ```{bash eval = FALSE}
 
 ls /sys/firmware/efi
@@ -122,11 +213,13 @@ ls /sys/firmware/efi
 
 ```
 
-Tenho `/sys/firmware/efi` e isso confirma que o Linux Mint está rodando em modo UEFI. Dessa forma optei por configurar o GRUB nativo do Linux para o dual Boot pois tive informaçõès que o rEFInd às vezes exige confirguaração de chaves e acessos no Mac e que sua instalação, às vezes, tem impedido o acesso ao Mac.
+Tenho `/sys/firmware/efi` e isso confirma que o Linux Mint está rodando em modo UEFI.
+Dessa forma optei por configurar o GRUB nativo do Linux para o dual Boot pois tive informaçõès que o rEFInd às vezes exige confirguaração de chaves e acessos no Mac e que sua instalação, às vezes, tem impedido o acesso ao Mac.
 
 ### GRUB
 
-O GRUB já está instalado junto com o Mint, no EFI. Para ele detectar o macOS, é preciso habilitar e rodar o os-prober:
+O GRUB já está instalado junto com o Mint, no EFI.
+Para ele detectar o macOS, é preciso habilitar e rodar o os-prober:
 
 ```{bash eval = FALSE}
 sudo apt install os-prober
@@ -136,12 +229,13 @@ sudo nano /etc/default/grub
 
 Dentro do arquivo grub config (/etc/default/grub), tire o comentário (`#`) da linha `GRUB_DISABLE_OS_PROBER=false` e atualize o GRUB:
 
-
 ```{bash eval = FALSE}
 sudo update-grub
 sudo os-prober
 ```
-Não listou o Mac no boot. A solução foi ir para o rEFInd.
+
+Não listou o Mac no boot.
+A solução foi ir para o rEFInd.
 
 ### REFInd
 
@@ -153,22 +247,19 @@ sudo apt install refind
 
 se o instalador não inciar automaticamente rode `sudo refind-install`
 
-para testar a instalação `sudo ls /boot/efi/EFI/refind` deve listar pelo menos os arquivos `refind.conf` e  `refind_x64.efi`
+para testar a instalação `sudo ls /boot/efi/EFI/refind` deve listar pelo menos os arquivos `refind.conf` e `refind_x64.efi`
 
-funcionou com as seguintes opçòes de boot:
-* EFI/ubuntu/grubx64.efi ==> GRUB do Linux Mint
+funcionou com as seguintes opçòes de boot: \* EFI/ubuntu/grubx64.efi ==\> GRUB do Linux Mint
 
-* Boot Fallback boot launcher ==> arquivo de emergência da EFI (raramente usado)
+-   Boot Fallback boot launcher ==\> arquivo de emergência da EFI (raramente usado)
 
-* boot/vmlinuz-6.14.0-29 ==> kernel do Mint direto (sem GRUB)
+-   boot/vmlinuz-6.14.0-29 ==\> kernel do Mint direto (sem GRUB)
 
-* Boot macOS from Preboot ==> auxiliar/recovery (não é o Mavericks principal)
+-   Boot macOS from Preboot ==\> auxiliar/recovery (não é o Mavericks principal)
 
-* Boot macOS from SSF ==> seu macOS Mavericks
+-   Boot macOS from SSF ==\> seu macOS Mavericks
 
-
-
-# Instalação de Pacotes e Utilitários
+## Instalação de Pacotes e Utilitários
 
 ```{bash eval=FALSE}
 sudo apt update
@@ -194,6 +285,7 @@ git config --global user.email "seuemail@algumservidor.algumlugar"
 ### Configurar o github
 
 Gere uma nova chave:
+
 ```{bash eval=FALSE}
 ssh-keygen -t ed25519 -C "seuemail@exemplo.com"
 ```
@@ -203,9 +295,11 @@ Copie a chave pública:
 ```{bash eval=FALSE}
 cat ~/.ssh/id_ed25519.pub
 ```
-Cole no GitHub em Settings > SSH and GPG Keys > New SSH Key
+
+Cole no GitHub em Settings \> SSH and GPG Keys \> New SSH Key
 
 Para puxar um projeto
+
 ```{bash eval=FALSE}
 
 cd ~/Documentos   # ou outra pasta onde quer guardar o projeto
@@ -214,6 +308,7 @@ git clone git@github.com:usuario/projeto.git
 ```
 
 Para empurrar um projeto
+
 ```{bash eval=FALSE}
 git add .
 git commit -m "Alterações dentro do Linux Mint"
@@ -224,6 +319,7 @@ git push -u origin main
 ## Tex
 
 Versão completa:
+
 ```{bash eval=FALSE}
 sudo apt install -y texlive-full
 ```
@@ -237,13 +333,13 @@ sudo apt install -y texlive-latex-base texlive-latex-recommended texlive-latex-e
 ## R e RStudio
 
 R base (repositório oficial do Mint/Ubuntu):
+
 ```{bash eval=FALSE}
 sudo apt install -y r-base r-base-dev
 ```
 
-RStudio: não está no apt padrão. Baixe o .deb mais recente em:
-https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb
-E instale com:
+RStudio: não está no apt padrão.
+Baixe o .deb mais recente em: <https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb> E instale com:
 
 ```{bash eval=FALSE}
 cd ~/Downloads
@@ -254,6 +350,7 @@ sudo apt -f install -y
 ## Python
 
 O Mint já traz Python, mas configure o ambiente:
+
 ```{bash eval=FALSE}
 sudo apt install -y python3 python3-pip python3-venv jupyter-notebook
 ```
@@ -276,14 +373,13 @@ sudo apt install -y build-essential libssl-dev libcurl4-openssl-dev libxml2-dev
 
 ## Zotero
 
-siga o original em https://github.com/retorquere/zotero-deb/blob/master/README.md
+siga o original em <https://github.com/retorquere/zotero-deb/blob/master/README.md>
 
 ```{bash eval=FALSE}
 wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash
 sudo apt update
 sudo apt install zotero
 ```
-
 
 ## QGIS
 
@@ -293,7 +389,8 @@ sudo apt install -y qgis qgis-plugin-grass
 
 ## Steam
 
-O Steam está no repositório “multiverse” (no Ubuntu/Mint). Normalmente já vem habilitado, mas se quiser garantir:
+O Steam está no repositório “multiverse” (no Ubuntu/Mint).
+Normalmente já vem habilitado, mas se quiser garantir:
 
 ```{bash eval=FALSE}
 sudo apt update
@@ -304,6 +401,7 @@ sudo apt update
 ```
 
 Com o repositório ativo
+
 ```{bash eval=FALSE}
 sudo apt install -y steam
 ```
@@ -315,6 +413,7 @@ sudo apt install -y steam
 O monitor adicional ficou com o texto gigante.
 
 Primeiro Diagnóstico para avaliar qual a resolução limite.
+
 ```{bash eval=FALSE}
 xrandr
 
@@ -334,25 +433,34 @@ xrandr
 <!--   (...) -->
 
 ```
-Isso lista os monitores e as resoluções detectadas. A HDMI 2 é limitada a 1920x1080 o que está igual ao Mac M1.
+
+Isso lista os monitores e as resoluções detectadas.
+A HDMI 2 é limitada a 1920x1080 o que está igual ao Mac M1.
 
 Tentei alterar a escala no ajuste do monitor mas o Minte está alterando os ois monitores simultaneamente.
 
-Optei por  usar escalonamento fracionado por monitor ativanado o “Fractional Scaling” no Cinnamon, que usa uma flag experimental:
+Optei por usar escalonamento fracionado por monitor ativanado o “Fractional Scaling” no Cinnamon, que usa uma flag experimental:
 
 ```{bash eval=FALSE}
 gsettings set org.cinnamon.muffin experimental-features "['scale-monitor-framebuffer']"
 
 ```
+
 Depois:
 
 Reinicie a sessão (ou o computador).
 
-Vá em Menu > Configuraçoes do Sistema > Monitor
+Vá em Menu \> Configuraçoes do Sistema \> Monitor
 
-Agora é possǘel ver opções de escala fracionada individuais por monitor (ex.: 100%, 125%, 150%). Assim, você pode deixar o interno (2560×1600) em 150% (ficando proporcional) e o externo (1920×1080) em 100%. *Mas, isso não funcionou :-(*
+Agora é possǘel ver opções de escala fracionada individuais por monitor (ex.: 100%, 125%, 150%).
+Assim, você pode deixar o interno (2560×1600) em 150% (ficando proporcional) e o externo (1920×1080) em 100%.
+*Mas, isso não funcionou :-(*
 
-Usei a configuração manual como a seguir. O arqgumento `pos` ajusta a posição do monitor. Por exemplo `pos 0x-2300` coloca o monitor HDMI-2 acima do moniotor eDP-1. Não entedi as contas. Foi na tentativa e erro...
+Usei a configuração manual como a seguir.
+O arqgumento `pos` ajusta a posição do monitor.
+Por exemplo `pos 0x-2300` coloca o monitor HDMI-2 acima do moniotor eDP-1.
+Não entedi as contas.
+Foi na tentativa e erro...
 
 ```{bash eval=FALSE}
 xrandr --output eDP-1  --mode 2560x1600  --scale 1.2x1.2 --pos 0x0         
@@ -361,11 +469,8 @@ xrandr --output eDP-1  --mode 2560x1600  --scale 1.2x1.2 --pos 0x0
 ```
 
 Para resetar tudo:
+
 ```{bash eval=FALSE}
 xrandr --output eDP-1 --scale 1x1 --auto \
        --output HDMI-2 --scale 1x1 --auto --right-of eDP-1
 ```
-
-
-
-
