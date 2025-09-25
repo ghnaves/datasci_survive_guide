@@ -1979,6 +1979,24 @@ Normalmente já vem habilitado, mas se quiser garantir:</p>
 <p>Com o repositório ativo</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> steam</span></code></pre></div>
 </div>
+<div id="adobe-reader" class="section level2" number="3.13">
+<h2><span class="header-section-number">3.13</span> Adobe reader</h2>
+<p>No Linux, o Adobe Acrobat Reader não é mais mantido oficialmente em
+muitas distros, mas ainda dá para instalar via .deb (Ubuntu/Debian) e
+usar o apt. Mas,a maioria das distros já vem com um leitor nativo, e
+alguns até têm recursos bem avançados.</p>
+<p>Para instalar o Adobe, siga os comandos a seguir:</p>
+<p>Baixe a versão deb</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">wget</span> https://ardownload2.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb</span></code></pre></div>
+<p>Ative suporte a 32 bits (se o sistema for 64 bits)</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">--add-architecture</span> i386</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
+<p>Instale dependências necessárias</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">sudo</span> apt install libc6:i386 libstdc++6:i386 libgtk2.0-0:i386 libxml2:i386 libnss3:i386 libcanberra-gtk-module:i386</span></code></pre></div>
+<p>Instale o Adobe Acrobat Reader</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> ~/Downloads/AdbeRdr9.5.5-1_i386linux_enu.deb</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install   <span class="co"># para corrigir dependências</span></span></code></pre></div>
+</div>
 </div>
 <div id="drives-e-outras-configurações" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Drives e outras
@@ -1987,29 +2005,29 @@ configurações</h1>
 <h2><span class="header-section-number">4.1</span> Vídeo</h2>
 <p>O monitor adicional ficou com o texto gigante.</p>
 <p>Primeiro Diagnóstico para avaliar qual a resolução limite.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">xrandr</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Screen</span> 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">eDP-1</span> connected primary 2560x1600+0+1080 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">286mm</span> x 179mm <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1600</span>     59.97<span class="pp">*</span>+ <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1440</span>     59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">360x202</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">320x180</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-2</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-2</span> connected 1920x1080+0+0 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">598mm</span> x 336mm <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1920x1080</span>     60.00<span class="pp">*</span>+  50.00    59.94   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1680x1050</span>     59.88 <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="op">&lt;</span>!--   <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="ex">xrandr</span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Screen</span> 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">eDP-1</span> connected primary 2560x1600+0+1080 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">286mm</span> x 179mm <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1600</span>     59.97<span class="pp">*</span>+ <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1440</span>     59.97   <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">360x202</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">320x180</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-2</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-2</span> connected 1920x1080+0+0 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">598mm</span> x 336mm <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1920x1080</span>     60.00<span class="pp">*</span>+  50.00    59.94   <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1680x1050</span>     59.88 <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="op">&lt;</span>!--   <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span></code></pre></div>
 <p>Isso lista os monitores e as resoluções detectadas. A HDMI 2 é
 limitada a 1920x1080 o que está igual ao Mac M1.</p>
 <p>Tentei alterar a escala no ajuste do monitor mas o Minte está
 alterando os ois monitores simultaneamente.</p>
 <p>Optei por usar escalonamento fracionado por monitor ativanado o
 “Fractional Scaling” no Cinnamon, que usa uma flag experimental:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">gsettings</span> set org.cinnamon.muffin experimental-features <span class="st">&quot;[&#39;scale-monitor-framebuffer&#39;]&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="ex">gsettings</span> set org.cinnamon.muffin experimental-features <span class="st">&quot;[&#39;scale-monitor-framebuffer&#39;]&quot;</span></span></code></pre></div>
 <p>Depois:</p>
 <p>Reinicie a sessão (ou o computador).</p>
 <p>Vá em Menu &gt; Configuraçoes do Sistema &gt; Monitor</p>
@@ -2021,11 +2039,11 @@ monitor (ex.: 100%, 125%, 150%). Assim, você pode deixar o interno
 <code>pos</code> ajusta a posição do monitor. Por exemplo
 <code>pos 0x-2300</code> coloca o monitor HDMI-2 acima do moniotor
 eDP-1. Não entedi as contas. Foi na tentativa e erro…</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1  <span class="at">--mode</span> 2560x1600  <span class="at">--scale</span> 1.2x1.2 <span class="at">--pos</span> 0x0         </span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>       <span class="ex">--output</span> HDMI-2 <span class="at">--mode</span> 1920x1080  <span class="at">--scale</span> 2x2     <span class="at">--pos</span> 0x-2300</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1  <span class="at">--mode</span> 2560x1600  <span class="at">--scale</span> 1.2x1.2 <span class="at">--pos</span> 0x0         </span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>       <span class="ex">--output</span> HDMI-2 <span class="at">--mode</span> 1920x1080  <span class="at">--scale</span> 2x2     <span class="at">--pos</span> 0x-2300</span></code></pre></div>
 <p>Para resetar tudo:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="dt">\</span></span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>       <span class="at">--output</span> HDMI-2 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="at">--right-of</span> eDP-1</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="dt">\</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>       <span class="at">--output</span> HDMI-2 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="at">--right-of</span> eDP-1</span></code></pre></div>
 </div>
 </div>
 

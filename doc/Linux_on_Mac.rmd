@@ -396,6 +396,34 @@ Com o repositório ativo
 sudo apt install -y steam
 ```
 
+## Adobe reader
+
+No Linux, o Adobe Acrobat Reader não é mais mantido oficialmente em muitas distros, mas ainda dá para instalar via .deb (Ubuntu/Debian) e usar o apt. Mas,a maioria das distros já vem com um leitor nativo, e alguns até têm recursos bem avançados.
+
+Para instalar o Adobe, siga os comandos a seguir:
+
+Baixe a versão deb
+```{bash eval=FALSE}
+wget https://ardownload2.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
+```
+
+Ative suporte a 32 bits (se o sistema for 64 bits)
+
+```{bash eval=FALSE}
+sudo dpkg --add-architecture i386
+sudo apt update
+```
+
+Instale dependências necessárias
+
+```{bash eval=FALSE}
+sudo apt install libc6:i386 libstdc++6:i386 libgtk2.0-0:i386 libxml2:i386 libnss3:i386 libcanberra-gtk-module:i386
+```
+Instale o Adobe Acrobat Reader
+```{bash eval=FALSE}
+sudo dpkg -i ~/Downloads/AdbeRdr9.5.5-1_i386linux_enu.deb
+sudo apt -f install   # para corrigir dependências
+```
 # Drives e outras configurações
 
 ## Vídeo
