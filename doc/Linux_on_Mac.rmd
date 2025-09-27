@@ -82,36 +82,36 @@ No terminal do Linux do computador MacBook 12,1
 ```{bash  eval=FALSE}
  sudo fdisk -l
  
-<!-- Disk /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors -->
-<!-- Units: sectors of 1 * 512 = 512 bytes -->
-<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
-<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
+# Disk /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors 
+# Units: sectors of 1 * 512 = 512 bytes 
+# Sector size (logical/physical): 512 bytes / 512 bytes 
+# I/O size (minimum/optimal): 512 bytes / 512 bytes 
 
-<!-- Disk /dev/nvme0n1: 465.76 GiB, 500107862016 bytes, 976773168 sectors -->
-<!-- Disk model: KINGSTON SA2000M8500G                    -->
-<!-- Units: sectors of 1 * 512 = 512 bytes -->
-<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
-<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
-<!-- Disklabel type: gpt -->
-<!-- Disk identifier: 25040E6F-2001-4E4E-B14C-C788AD03D71D -->
+# Disk /dev/nvme0n1: 465.76 GiB, 500107862016 bytes, 976773168 sectors 
+# Disk model: KINGSTON SA2000M8500G                    
+# Units: sectors of 1 * 512 = 512 bytes 
+# Sector size (logical/physical): 512 bytes / 512 bytes 
+# I/O size (minimum/optimal): 512 bytes / 512 bytes 
+# Disklabel type: gpt 
+# Disk identifier: 25040E6F-2001-4E4E-B14C-C788AD03D71D 
 
-<!-- Device             Start       End   Sectors   Size Type -->
-<!-- /dev/nvme0n1p1        40    409639    409600   200M EFI System -->
-<!-- /dev/nvme0n1p2    409640 391034639 390625000 186.3G Apple APFS -->
-<!-- /dev/nvme0n1p3 391034640 976773127 585738488 279.3G Apple APFS -->
+# Device             Start       End   Sectors   Size Type 
+# /dev/nvme0n1p1        40    409639    409600   200M EFI System 
+# /dev/nvme0n1p2    409640 391034639 390625000 186.3G Apple APFS 
+# /dev/nvme0n1p3 391034640 976773127 585738488 279.3G Apple APFS 
 
-<!-- Disk /dev/sda: 117.19 GiB, 125829120000 bytes, 245760000 sectors -->
-<!-- Disk model: ProductCode      -->
-<!-- Units: sectors of 1 * 512 = 512 bytes -->
-<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
-<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
-<!-- Disklabel type: dos -->
-<!-- Disk identifier: 0xd94bd83b -->
+# Disk /dev/sda: 117.19 GiB, 125829120000 bytes, 245760000 sectors 
+# Disk model: ProductCode      
+# Units: sectors of 1 * 512 = 512 bytes 
+# Sector size (logical/physical): 512 bytes / 512 bytes 
+# I/O size (minimum/optimal): 512 bytes / 512 bytes 
+# Disklabel type: dos 
+# Disk identifier: 0xd94bd83b 
 
-<!-- Device     Boot   Start       End   Sectors   Size Id Type -->
-<!-- /dev/sda1  *         64   5967263   5967200   2.8G  0 Empty -->
-<!-- /dev/sda2          8452     18691     10240     5M ef EFI (FAT-12/16/32) -->
-<!-- /dev/sda3       5967872 245759999 239792128 114.3G 83 Linux -->
+# Device     Boot   Start       End   Sectors   Size Id Type 
+# /dev/sda1  *         64   5967263   5967200   2.8G  0 Empty 
+# /dev/sda2          8452     18691     10240     5M ef EFI (FAT-12/16/32) 
+# /dev/sda3       5967872 245759999 239792128 114.3G 83 Linux 
 
 ```
 
@@ -132,36 +132,36 @@ No terminal do Linux do computador MacBook 11,3
 
 ```{bash  eval=FALSE}
  sudo fdisk -l
-<!-- Disk /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors -->
-<!-- Units: sectors of 1 * 512 = 512 bytes -->
-<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
-<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
+# Disk /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors 
+# Units: sectors of 1 * 512 = 512 bytes 
+# Sector size (logical/physical): 512 bytes / 512 bytes 
+# I/O size (minimum/optimal): 512 bytes / 512 bytes 
 
-<!-- Disk /dev/sda: 465.92 GiB, 500277790720 bytes, 977105060 sectors -->
-<!-- Disk model: APPLE SSD SM0512 -->
-<!-- Units: sectors of 1 * 512 = 512 bytes -->
-<!-- Sector size (logical/physical): 512 bytes / 4096 bytes -->
-<!-- I/O size (minimum/optimal): 4096 bytes / 4096 bytes -->
-<!-- Disklabel type: gpt -->
-<!-- Disk identifier: E8D2B5D4-7F47-4B39-A216-5D77DAD9D793 -->
+# Disk /dev/sda: 465.92 GiB, 500277790720 bytes, 977105060 sectors 
+# Disk model: APPLE SSD SM0512 
+# Units: sectors of 1 * 512 = 512 bytes 
+# Sector size (logical/physical): 512 bytes / 4096 bytes 
+# I/O size (minimum/optimal): 4096 bytes / 4096 bytes 
+# Disklabel type: gpt 
+# Disk identifier: E8D2B5D4-7F47-4B39-A216-5D77DAD9D793 
 
-<!-- Device         Start       End   Sectors   Size Type -->
-<!-- /dev/sda1         40    409639    409600   200M EFI System -->
-<!-- /dev/sda2     409640 195722135 195312496  93.1G Apple APFS -->
-<!-- /dev/sda3  195722136 977105023 781382888 372.6G Apple APFS -->
+# Device         Start       End   Sectors   Size Type 
+# /dev/sda1         40    409639    409600   200M EFI System 
+# /dev/sda2     409640 195722135 195312496  93.1G Apple APFS 
+# /dev/sda3  195722136 977105023 781382888 372.6G Apple APFS 
 
-<!-- Disk /dev/sdb: 117.19 GiB, 125829120000 bytes, 245760000 sectors -->
-<!-- Disk model: ProductCode      -->
-<!-- Units: sectors of 1 * 512 = 512 bytes -->
-<!-- Sector size (logical/physical): 512 bytes / 512 bytes -->
-<!-- I/O size (minimum/optimal): 512 bytes / 512 bytes -->
-<!-- Disklabel type: dos -->
-<!-- Disk identifier: 0xd94bd83b -->
+# Disk /dev/sdb: 117.19 GiB, 125829120000 bytes, 245760000 sectors 
+# Disk model: ProductCode      
+# Units: sectors of 1 * 512 = 512 bytes 
+# Sector size (logical/physical): 512 bytes / 512 bytes 
+# I/O size (minimum/optimal): 512 bytes / 512 bytes 
+# Disklabel type: dos 
+# Disk identifier: 0xd94bd83b 
 
-<!-- Device     Boot   Start       End   Sectors   Size Id Type -->
-<!-- /dev/sdb1  *         64   5967263   5967200   2.8G  0 Empty -->
-<!-- /dev/sdb2          8452     18691     10240     5M ef EFI (FAT-12/16/32) -->
-<!-- /dev/sdb3       5967872 245759999 239792128 114.3G 83 Linux -->
+# Device     Boot   Start       End   Sectors   Size Id Type 
+# /dev/sdb1  *         64   5967263   5967200   2.8G  0 Empty 
+# /dev/sdb2          8452     18691     10240     5M ef EFI (FAT-12/16/32) 
+# /dev/sdb3       5967872 245759999 239792128 114.3G 83 Linux 
  
 ```
 
@@ -187,7 +187,7 @@ Para ver qual chip está na maáquina:
 
 ```{bash eval=FALSE}
 lshw -C network
-<!-- BCM4360 802.11ac -->
+# BCM4360 802.11ac 
 ```
 
 Na sequencia:
@@ -208,8 +208,8 @@ Verifique se `/sys/firmware/efi` existe
 
 ls /sys/firmware/efi
 
-<!-- config_table  fw_platform_size  mok-variables  runtime-map -->
-<!-- efivars       fw_vendor         runtime        systab -->
+# config_table  fw_platform_size  mok-variables  runtime-map 
+# efivars       fw_vendor         runtime        systab 
 
 ```
 
@@ -435,20 +435,20 @@ Primeiro Diagnóstico para avaliar qual a resolução limite.
 ```{bash eval=FALSE}
 xrandr
 
-<!-- Screen 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 -->
-<!-- eDP-1 connected primary 2560x1600+0+1080 (normal left inverted right x axis y axis) 286mm x 179mm -->
-<!--    2560x1600     59.97*+ -->
-<!--    2560x1440     59.97   -->
-<!-- (...) -->
-<!--    360x202       59.97   -->
-<!--    320x180       59.97   -->
-<!-- DP-1 disconnected (normal left inverted right x axis y axis) -->
-<!-- HDMI-1 disconnected (normal left inverted right x axis y axis) -->
-<!-- DP-2 disconnected (normal left inverted right x axis y axis) -->
-<!-- HDMI-2 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm -->
-<!--    1920x1080     60.00*+  50.00    59.94   -->
-<!--    1680x1050     59.88 -->
-<!--   (...) -->
+# Screen 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 
+# eDP-1 connected primary 2560x1600+0+1080 (normal left inverted right x axis y axis) 286mm x 179mm 
+#    2560x1600     59.97*+ 
+#    2560x1440     59.97   
+# (...) 
+#    360x202       59.97   
+#    320x180       59.97   
+# DP-1 disconnected (normal left inverted right x axis y axis) 
+# HDMI-1 disconnected (normal left inverted right x axis y axis) 
+# DP-2 disconnected (normal left inverted right x axis y axis) 
+# HDMI-2 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm 
+#    1920x1080     60.00*+  50.00    59.94   
+#    1680x1050     59.88 
+#   (...) 
 
 ```
 
@@ -492,3 +492,34 @@ Para resetar tudo:
 xrandr --output eDP-1 --scale 1x1 --auto \
        --output HDMI-2 --scale 1x1 --auto --right-of eDP-1
 ```
+
+
+## Baterias
+
+Instalar utilitários
+
+```{bash eval=FALSE}
+sudo apt update
+sudo apt install acpi upower -y
+```
+
+Testar informações básicas
+```{bash eval=FALSE}
+# Status rápido
+acpi -V
+
+# Informações detalhadas
+upower -i $(upower -e | grep BAT)
+
+# Monitorar em tempo real
+watch -n 5 upower -i $(upower -e | grep BAT)
+
+# Conferir arquivos do sistema: Muitos Macs expõem dados direto mas nem sempre
+cat /sys/class/power_supply/BAT0/capacity
+cat /sys/class/power_supply/BAT0/status
+cat /sys/class/power_supply/BAT0/voltage_now
+cat /sys/class/power_supply/BAT0/cycle_count
+
+```
+
+

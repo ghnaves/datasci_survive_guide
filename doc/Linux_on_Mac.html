@@ -11,7 +11,7 @@
 
 <meta name="author" content="Gustavo Givisiez" />
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-27" />
 
 <title>Instalação de Linux no Mac</title>
 
@@ -1662,7 +1662,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Instalação de Linux no Mac</h1>
 <h4 class="author">Gustavo Givisiez</h4>
-<h4 class="date">2025-09-25</h4>
+<h4 class="date">2025-09-27</h4>
 
 </div>
 
@@ -1747,36 +1747,36 @@ inicialização e inicialize o Cinamon em 64bits</p>
 <p>No terminal do Linux do computador MacBook 12,1</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a> <span class="fu">sudo</span> fdisk <span class="at">-l</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a> </span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Disk /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors </span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Units: sectors of 1 * 512 = 512 bytes </span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># Sector size (logical/physical): 512 bytes / 512 bytes </span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># I/O size (minimum/optimal): 512 bytes / 512 bytes </span></span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> /dev/nvme0n1: 465.76 GiB, 500107862016 bytes, 976773168 sectors <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> model: KINGSTON SA2000M8500G                    <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disklabel</span> type: gpt <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> identifier: 25040E6F-2001-4E4E-B14C-C788AD03D71D <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># Disk /dev/nvme0n1: 465.76 GiB, 500107862016 bytes, 976773168 sectors </span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># Disk model: KINGSTON SA2000M8500G                    </span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># Units: sectors of 1 * 512 = 512 bytes </span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co"># Sector size (logical/physical): 512 bytes / 512 bytes </span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co"># I/O size (minimum/optimal): 512 bytes / 512 bytes </span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Disklabel type: gpt </span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co"># Disk identifier: 25040E6F-2001-4E4E-B14C-C788AD03D71D </span></span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Device</span>             Start       End   Sectors   Size Type <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/nvme0n1p1</span>        40    409639    409600   200M EFI System <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/nvme0n1p2</span>    409640 391034639 390625000 186.3G Apple APFS <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/nvme0n1p3</span> 391034640 976773127 585738488 279.3G Apple APFS <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co"># Device             Start       End   Sectors   Size Type </span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co"># /dev/nvme0n1p1        40    409639    409600   200M EFI System </span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co"># /dev/nvme0n1p2    409640 391034639 390625000 186.3G Apple APFS </span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co"># /dev/nvme0n1p3 391034640 976773127 585738488 279.3G Apple APFS </span></span>
 <span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> /dev/sda: 117.19 GiB, 125829120000 bytes, 245760000 sectors <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> model: ProductCode      <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disklabel</span> type: dos <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> identifier: 0xd94bd83b <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co"># Disk /dev/sda: 117.19 GiB, 125829120000 bytes, 245760000 sectors </span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co"># Disk model: ProductCode      </span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co"># Units: sectors of 1 * 512 = 512 bytes </span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co"># Sector size (logical/physical): 512 bytes / 512 bytes </span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co"># I/O size (minimum/optimal): 512 bytes / 512 bytes </span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co"># Disklabel type: dos </span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co"># Disk identifier: 0xd94bd83b </span></span>
 <span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Device</span>     Boot   Start       End   Sectors   Size Id Type <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda1</span>  <span class="pp">*</span>         64   5967263   5967200   2.8G  0 Empty <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda2</span>          8452     18691     10240     5M ef EFI <span class="er">(</span><span class="ex">FAT-12/16/32</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda3</span>       5967872 245759999 239792128 114.3G 83 Linux <span class="at">--</span><span class="op">&gt;</span></span></code></pre></div>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co"># Device     Boot   Start       End   Sectors   Size Id Type </span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co"># /dev/sda1  *         64   5967263   5967200   2.8G  0 Empty </span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co"># /dev/sda2          8452     18691     10240     5M ef EFI (FAT-12/16/32) </span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="co"># /dev/sda3       5967872 245759999 239792128 114.3G 83 Linux </span></span></code></pre></div>
 <p>Quando entrar no particionamento manual: 1. Selecione /dev/nvme0n1p3
 (279 GB APFS). 2. Mande formatar como ext4. 3. Defina como ponto de
 montagem “/” (raiz do Linux). 4. Certifique-se de que o instalador vai
@@ -1789,36 +1789,36 @@ o instalador detecta isso sozinho. - Não formate a EFI, apenas use como
 11,3</h2>
 <p>No terminal do Linux do computador MacBook 11,3</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a> <span class="fu">sudo</span> fdisk <span class="at">-l</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># Disk /dev/loop0: 2.42 GiB, 2596925440 bytes, 5072120 sectors </span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># Units: sectors of 1 * 512 = 512 bytes </span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Sector size (logical/physical): 512 bytes / 512 bytes </span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co"># I/O size (minimum/optimal): 512 bytes / 512 bytes </span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> /dev/sda: 465.92 GiB, 500277790720 bytes, 977105060 sectors <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> model: APPLE SSD SM0512 <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 4096 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 4096 bytes / 4096 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disklabel</span> type: gpt <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> identifier: E8D2B5D4-7F47-4B39-A216-5D77DAD9D793 <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Disk /dev/sda: 465.92 GiB, 500277790720 bytes, 977105060 sectors </span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># Disk model: APPLE SSD SM0512 </span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co"># Units: sectors of 1 * 512 = 512 bytes </span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># Sector size (logical/physical): 512 bytes / 4096 bytes </span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># I/O size (minimum/optimal): 4096 bytes / 4096 bytes </span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co"># Disklabel type: gpt </span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co"># Disk identifier: E8D2B5D4-7F47-4B39-A216-5D77DAD9D793 </span></span>
 <span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Device</span>         Start       End   Sectors   Size Type <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda1</span>         40    409639    409600   200M EFI System <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda2</span>     409640 195722135 195312496  93.1G Apple APFS <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sda3</span>  195722136 977105023 781382888 372.6G Apple APFS <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co"># Device         Start       End   Sectors   Size Type </span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># /dev/sda1         40    409639    409600   200M EFI System </span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co"># /dev/sda2     409640 195722135 195312496  93.1G Apple APFS </span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co"># /dev/sda3  195722136 977105023 781382888 372.6G Apple APFS </span></span>
 <span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> /dev/sdb: 117.19 GiB, 125829120000 bytes, 245760000 sectors <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> model: ProductCode      <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disklabel</span> type: dos <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Disk</span> identifier: 0xd94bd83b <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co"># Disk /dev/sdb: 117.19 GiB, 125829120000 bytes, 245760000 sectors </span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co"># Disk model: ProductCode      </span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="co"># Units: sectors of 1 * 512 = 512 bytes </span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co"># Sector size (logical/physical): 512 bytes / 512 bytes </span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="co"># I/O size (minimum/optimal): 512 bytes / 512 bytes </span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co"># Disklabel type: dos </span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co"># Disk identifier: 0xd94bd83b </span></span>
 <span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Device</span>     Boot   Start       End   Sectors   Size Id Type <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sdb1</span>  <span class="pp">*</span>         64   5967263   5967200   2.8G  0 Empty <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sdb2</span>          8452     18691     10240     5M ef EFI <span class="er">(</span><span class="ex">FAT-12/16/32</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">/dev/sdb3</span>       5967872 245759999 239792128 114.3G 83 Linux <span class="at">--</span><span class="op">&gt;</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co"># Device     Boot   Start       End   Sectors   Size Id Type </span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co"># /dev/sdb1  *         64   5967263   5967200   2.8G  0 Empty </span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co"># /dev/sdb2          8452     18691     10240     5M ef EFI (FAT-12/16/32) </span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co"># /dev/sdb3       5967872 245759999 239792128 114.3G 83 Linux </span></span>
 <span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a> </span></code></pre></div>
 <p>Quando entrar no particionamento manual: 1. Selecione /dev/sda3
 (372.6G Apple APFS). 2. Mande formatar como ext4. 3. Defina como ponto
@@ -1843,7 +1843,7 @@ chip Wi-Fi Broadcom</h2>
 Broadcom não é reconhecido automaticamente porque o firmware é
 proprietário. Para ver qual chip está na maáquina:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">lshw</span> <span class="at">-C</span> network</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">BCM4360</span> 802.11ac <span class="at">--</span><span class="op">&gt;</span></span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># BCM4360 802.11ac </span></span></code></pre></div>
 <p>Na sequencia:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
 </div>
@@ -1858,8 +1858,8 @@ iniciais</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">ls</span> /sys/firmware/efi</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">config_table</span>  fw_platform_size  mok-variables  runtime-map <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">efivars</span>       fw_vendor         runtime        systab <span class="at">--</span><span class="op">&gt;</span></span></code></pre></div>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># config_table  fw_platform_size  mok-variables  runtime-map </span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co"># efivars       fw_vendor         runtime        systab </span></span></code></pre></div>
 <p>Tenho <code>/sys/firmware/efi</code> e isso confirma que o Linux Mint
 está rodando em modo UEFI. Dessa forma optei por configurar o GRUB
 nativo do Linux para o dual Boot pois tive informaçõès que o rEFInd às
@@ -2007,20 +2007,20 @@ configurações</h1>
 <p>Primeiro Diagnóstico para avaliar qual a resolução limite.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="ex">xrandr</span></span>
 <span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">Screen</span> 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">eDP-1</span> connected primary 2560x1600+0+1080 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">286mm</span> x 179mm <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1600</span>     59.97<span class="pp">*</span>+ <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">2560x1440</span>     59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">360x202</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">320x180</span>       59.97   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-1</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">DP-2</span> disconnected <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span>
-<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="op">&lt;</span>!-- <span class="ex">HDMI-2</span> connected 1920x1080+0+0 <span class="er">(</span><span class="ex">normal</span> left inverted right x axis y axis<span class="kw">)</span> <span class="ex">598mm</span> x 336mm <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1920x1080</span>     60.00<span class="pp">*</span>+  50.00    59.94   <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="op">&lt;</span>!--    <span class="ex">1680x1050</span>     59.88 <span class="at">--</span><span class="op">&gt;</span></span>
-<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="op">&lt;</span>!--   <span class="kw">(</span><span class="ex">...</span><span class="kw">)</span> <span class="ex">--</span><span class="op">&gt;</span></span></code></pre></div>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="co"># Screen 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 </span></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="co"># eDP-1 connected primary 2560x1600+0+1080 (normal left inverted right x axis y axis) 286mm x 179mm </span></span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="co">#    2560x1600     59.97*+ </span></span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a><span class="co">#    2560x1440     59.97   </span></span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="co"># (...) </span></span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="co">#    360x202       59.97   </span></span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="co">#    320x180       59.97   </span></span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="co"># DP-1 disconnected (normal left inverted right x axis y axis) </span></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="co"># HDMI-1 disconnected (normal left inverted right x axis y axis) </span></span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="co"># DP-2 disconnected (normal left inverted right x axis y axis) </span></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="co"># HDMI-2 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm </span></span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="co">#    1920x1080     60.00*+  50.00    59.94   </span></span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="co">#    1680x1050     59.88 </span></span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="co">#   (...) </span></span></code></pre></div>
 <p>Isso lista os monitores e as resoluções detectadas. A HDMI 2 é
 limitada a 1920x1080 o que está igual ao Mac M1.</p>
 <p>Tentei alterar a escala no ajuste do monitor mas o Minte está
@@ -2044,6 +2044,27 @@ eDP-1. Não entedi as contas. Foi na tentativa e erro…</p>
 <p>Para resetar tudo:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="dt">\</span></span>
 <span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>       <span class="at">--output</span> HDMI-2 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="at">--right-of</span> eDP-1</span></code></pre></div>
+</div>
+<div id="baterias" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Baterias</h2>
+<p>Instalar utilitários</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="fu">sudo</span> apt install acpi upower <span class="at">-y</span></span></code></pre></div>
+<p>Testar informações básicas</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co"># Status rápido</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="ex">acpi</span> <span class="at">-V</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a><span class="co"># Informações detalhadas</span></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a><span class="ex">upower</span> <span class="at">-i</span> <span class="va">$(</span><span class="ex">upower</span> <span class="at">-e</span> <span class="kw">|</span> <span class="fu">grep</span> BAT<span class="va">)</span></span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a><span class="co"># Monitorar em tempo real</span></span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a><span class="ex">watch</span> <span class="at">-n</span> 5 upower <span class="at">-i</span> <span class="va">$(</span><span class="ex">upower</span> <span class="at">-e</span> <span class="kw">|</span> <span class="fu">grep</span> BAT<span class="va">)</span></span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a><span class="co"># Conferir arquivos do sistema: Muitos Macs expõem dados direto mas nem sempre</span></span>
+<span id="cb37-11"><a href="#cb37-11" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/capacity</span>
+<span id="cb37-12"><a href="#cb37-12" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/status</span>
+<span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/voltage_now</span>
+<span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/cycle_count</span></code></pre></div>
 </div>
 </div>
 
