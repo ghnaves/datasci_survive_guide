@@ -424,6 +424,19 @@ Instale o Adobe Acrobat Reader
 sudo dpkg -i ~/Downloads/AdbeRdr9.5.5-1_i386linux_enu.deb
 sudo apt -f install   # para corrigir dependências
 ```
+
+
+## Spotfy
+
+```{bash eval=FALSE}
+sudo apt update
+sudo apt install curl gnupg -y
+curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt update
+sudo apt install spotify-client -y
+```
+
 # Drives e outras configurações
 
 ## Vídeo
@@ -521,5 +534,93 @@ cat /sys/class/power_supply/BAT0/voltage_now
 cat /sys/class/power_supply/BAT0/cycle_count
 
 ```
+
+### Magic Mouse
+[**RicardoEPRodrigues/magicmouse-hid**](https://github.com/RicardoEPRodrigues/magicmouse-hid) é um fork recente justamente para corrigir o problema quando o Linux vê o Magic Mouse 2 via Bluetooth, mas ele não aparece como dispositivo de entrada (sem ponteiro, sem scroll, sem clique).
+
+
+Instalação do driver `magicmouse-hid`
+1. Instalar dependências
+
+``` {bash eval=FALSE}
+sudo apt update
+sudo apt install -y dkms git build-essential linux-headers-$(uname -r)
+```
+
+2. Clonar o repositório
+
+```{bash eval=FALSE}
+git clone https://github.com/RicardoEPRodrigues/magicmouse-hid.git
+cd magicmouse-hid
+```
+
+3. Criar um `dkms.conf`
+Criar o arquivo dkms.conf na raiz do projeto.
+
+```{bash eval=FALSE}
+PACKAGE_NAME="magicmouse-hid"
+PACKAGE_VERSION="1.0"
+BUILT_MODULE_NAME[0]="hid_magicmouse"
+DEST_MODULE_LOCATION[0]="/updates/dkms"
+AUTOINSTALL="yes"
+```
+
+4. Instalar via DKMS
+
+Esse driver usa DKMS para manter a compatibilidade entre versões do kernel.
+
+```{bash eval=FALSE}
+sudo cp -r ~/projects/magicmouse-hid /usr/src/magicmouse-hid-1.0
+sudo dkms add -m magicmouse-hid -v 1.0
+sudo dkms build -m magicmouse-hid -v 1.0
+sudo dkms install -m magicmouse-hid -v 1.0
+
+```
+
+5. Carregar o módulo
+
+``` {bash eval=FALSE}
+sudo modprobe hid_magicmouse
+```
+
+6. Verificar se o módulo foi carregado
+
+``` {bash eval=FALSE}
+lsmod | grep magicmouse
+```
+
+7. Reconectar o Magic Mouse
+
+Desligue e ligue o mouse novamente → depois reconecte no **Configurações → Bluetooth** do Mint
+ou pelo terminal:
+
+``` {bash eval=FALSE}
+bluetoothctl
+power on
+agent on
+default-agent
+scan on         # vai listar MACs, anote o do Magic Mouse
+scan off        # pare o scan
+pair XX:XX:XX:XX:XX:XX
+connect XX:XX:XX:XX:XX:XX
+trust XX:XX:XX:XX:XX:XX
+exit
+```
+
+---
+
+8. Conferir no sistema
+
+``` {bash eval=FALSE}
+xinput list
+```
+
+9.  Observações
+
+* O **Magic Mouse 2** só funciona bem com esse driver extra, porque o suporte oficial do kernel é incompleto.
+* Esse fork adiciona suporte a **movimento do ponteiro, clique e scroll**.
+* Gestos avançados (3 dedos, zoom, etc.) ainda podem ser limitados, mas dá pra habilitar com **Fusuma** ou **libinput-gestures** depois.
+
+
 
 
