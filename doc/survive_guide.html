@@ -11,7 +11,7 @@
 
 <meta name="author" content="Gustavo Givisiez" />
 
-<meta name="date" content="2025-08-22" />
+<meta name="date" content="2025-09-29" />
 
 <title>Guia de Sobrevivência</title>
 
@@ -1552,7 +1552,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Guia de Sobrevivência</h1>
 <h4 class="author">Gustavo Givisiez</h4>
-<h4 class="date">2025-08-22</h4>
+<h4 class="date">2025-09-29</h4>
 
 </div>
 
@@ -1572,21 +1572,19 @@ sucessores (95 e XP). Mas, nesses Windows recém-nascidos a arquitetura
 era toda baseada no MS-DOS, o que significava que o sistema operacional
 dependente de um sistema monotarefa.</p>
 <p>Um dos grandes problemas dessas versões estava na instalação de
-softwares de terceiros. Havia a promessa de que o
-<code>Painel de Controle &gt; Adicionar/Remover Programas</code>
-cuidaria de instalar e desinstalar. Mas existiam muitos problemas: o
-programa instalador do sistema apenas teoricamente gerenciava as
-instalações e, na prática, cada instalador <code>.exe</code> ou
-<code>.msi</code> fazia o que queria — copiava arquivos em múltiplas
-pastas (<code>C:\Windows\System</code>, <code>C:\Program Files</code>,
-<code>C:\Documents and Settings</code> etc.). Muitas dependências iam
-para a famosa DLL <em>Hell</em> que continham várias versões da mesma
-biblioteca misturadas. Por esses problemas, a instalação de aplicativos
-era um verdadeiro pesadelo e, ao desinstalar, quase sempre sobravam
-rastros: entradas no Registro do Windows, DLLs largadas, pastas
-esquecidas. Ou seja, tudo parecia ser centralizado, mas era um caos de
-fato. Na prática, muitos aplicativos deixavam rastros no sistema, como
-DLLs e outros arquivos que não eram removidos corretamente. Isso exigia
+softwares de terceiros. Havia a promessa de que o Painel de Controle
+&gt; Adicionar/Remover Programas cuidaria de instalar e desinstalar. Mas
+existiam muitos problemas: o programa instalador do sistema apenas
+teoricamente gerenciava as instalações e, na prática, cada instalador
+.exe ou .msi fazia o que queria — copiava arquivos em múltiplas pastas
+(C:, C:Files, C:and Settings etc.). Muitas dependências iam para a
+famosa DLL Hell que continham várias versões da mesma biblioteca
+misturadas. Por esses problemas, a instalação de aplicativos era um
+verdadeiro pesadelo e, ao desinstalar, quase sempre sobravam rastros:
+entradas no Registro do Windows, DLLs largadas, pastas esquecidas. Ou
+seja, tudo parecia ser centralizado, mas era um caos de fato. Na
+prática, muitos aplicativos deixavam rastros no sistema, como DLLs e
+outros arquivos que não eram removidos corretamente. Isso exigia
 reformatar o computador mais de uma vez ao ano para manter o sistema
 limpo e funcionando bem. Outros problemas me incomodavam: a estrutura de
 arquivos FAT16/FAT32 (limitada, sem journaling), um sistema de Registro
@@ -1613,11 +1611,11 @@ no User Account Control (UAC), com mais segurança e menos apps mexendo
 em pastas do sistema. Não tenho muita experiência nos versões
 posteriores (10 e 11) mas sei que há um reforço na sandbox de apps (ex:
 apps UWP/Store) e que hoje há um gerenciador de pacotes mais moderno: o
-<code>winget</code> (a partir de 2020) que é uma espécie de “Homebrew
-para Windows” ou o “apt-get do Ubuntu”. Sei que hoje a instalação é mais
-previsível, com rastreio e remoção mais limpa (pelo menos para apps da
-Store e winget) muito embora muitos <code>.exe</code> de terceiros ainda
-funcionam no “modelo antigo” e podem deixar rastros.</p>
+winget (a partir de 2020) que é uma espécie de “Homebrew para Windows”
+ou o “apt-get do Ubuntu”. Sei que hoje a instalação é mais previsível,
+com rastreio e remoção mais limpa (pelo menos para apps da Store e
+winget) muito embora muitos .exe de terceiros ainda funcionam no “modelo
+antigo” e podem deixar rastros.</p>
 <p>Foi por volta de 2013 (Windows 7 e 8) que eu migrei para o Mac.
 Observei que, diferente do Window, o Mac era baseado em plataforma Unix
 com controle muito superior sobre a memória e núcleo de processamento. A
@@ -1628,14 +1626,12 @@ aplicativao não “aprovados” ou não funiconam ou funcionam sob muitos
 alertas de segurança. Formado no Windows, estava acostumado a baixar os
 instaladores e me pareceia natural. Mas, tenho de admitir que achava
 estranho a ideia de arratar um programa diretamente para a pasta de
-aplicativos. Copiar arquios <code>.app</code> para o
-<code>/Appications</code> era estranho como a sequencia de comandos do
-antigo MS-DOS, pois não dependia de um
-<code>Painel de Controle &gt; Adicionar/Remover Programas</code>, que se
-era uma prática, há muito extinta no Windows, em que o arquivo
-<code>.exe</code> era copiado de umm disquete para um diretório e
-executado.</p>
-<pre class="dos"><code>A:
+aplicativos. Copiar arquios .app para o /Appications era estranho como a
+sequencia de comandos do antigo MS-DOS, pois não dependia de um Painel
+de Controle &gt; Adicionar/Remover Programas, que se era uma prática, há
+muito extinta no Windows, em que o arquivo .exe era copiado de umm
+disquete para um diretório e executado.</p>
+<pre class="plaintext"><code>A:
 A:\&gt; dir
 JOGO.EXE     123456  01-01-1993  12:00
 README.TXT     1234  01-01-1993  12:00
@@ -1649,16 +1645,15 @@ C:\GAMES&gt; dir
 JOGO.EXE
 README.TXT
 C:\GAMES&gt; JOGO.EXE</code></pre>
-<p>Essa ideia de opiar o <code>.app</code> (um tipo de
-<code>.exe</code>) para o compurtador parecia um retrocesso pois ficava
-uma pergunta no ar: quem controlava o lixo dos instaladores? A resposta
-era simoples: o próprio MacOS controlada. Há no MacOS tem um sistema de
-instalação mais tradicional com instaladores <code>.pkg</code>
-(semelhante ao <code>.msi</code> do Windows) e que cuida de copiar
-arquivos para múltiplas pastas, mas a maioria dos aplicativos funcionava
-com o simples arrastar e soltar. A instalação era feita em um único
-diretório (<code>/Applications</code>) e a desinstalação era tão simples
-quanto arrastar o aplicativo para a lixeira. Fui percebendo que as
+<p>Essa ideia de opiar o .app (um tipo de .exe) para o compurtador
+parecia um retrocesso pois ficava uma pergunta no ar: quem controlava o
+lixo dos instaladores? A resposta era simoples: o próprio MacOS
+controlada. Há no MacOS tem um sistema de instalação mais tradicional
+com instaladores .pkg (semelhante ao .msi do Windows) e que cuida de
+copiar arquivos para múltiplas pastas, mas a maioria dos aplicativos
+funcionava com o simples arrastar e soltar. A instalação era feita em um
+único diretório (/Applications) e a desinstalação era tão simples quanto
+arrastar o aplicativo para a lixeira. Fui percebendo que as
 certificaçoes e padronizações da Apple quase eliminavam os problemas que
 eu enfrentava no Windows, como rastros deixados no sistema.</p>
 <p>No entanto, sempre fui muito curioso e estou sempre instaladndo
@@ -1668,9 +1663,8 @@ de testar. A medida que o tempo foi passando que eu fui percebendo, para
 a minha surpresa, que o MscOS também deixava os programas instalarem
 lixo ou eu mesmo, na maioria da vezes, não sabia muito bem o que fazia.
 Foi quandom, estudando Data Science, percebi que havia algo que esses
-profissionais chamavam de <em>gerenciador de pacotes</em> e fui
-apresentado ao Homebrew que é um gerenciador de pacotes muito
-eficiente.</p>
+profissionais chamavam de gerenciador de pacotes e fui apresentado ao
+Homebrew que é um gerenciador de pacotes muito eficiente.</p>
 <p>Aqui vale um parênteses. O Windows e macOS, desde o início, tiveram
 como prioridade a experiência do usuário: menus, janelas, botões. O
 usuário não precisava (nem devia) ver o que acontecia “por baixo”. O
