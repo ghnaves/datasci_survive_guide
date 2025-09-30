@@ -1,0 +1,86 @@
+---
+title: "md_tex_cheatsheet"
+output: html_document
+date: "2025-09-30"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+title: "Cheatsheet RMarkdown & LaTeX"
+author: "Seu Nome"
+date: "`r Sys.Date()`"
+output: 
+  html_document: default
+  pdf_document: default
+---
+
+# Cheatsheet RMarkdown & LaTeX
+
+Este documento resume os principais comandos de **RMarkdown** e **LaTeX** lado a lado.
+
+---
+
+## Estrutura de texto
+
+| O que você quer       | RMarkdown (`.Rmd`)   | LaTeX (`.tex`)                     |
+|-----------------------|----------------------|-------------------------------------|
+| Título nível 1        | `# Título`           | `\section{Título}`                  |
+| Título nível 2        | `## Subtítulo`       | `\subsection{Subtítulo}`            |
+| Título nível 3        | `### Subsubtítulo`   | `\subsubsection{Título}`            |
+| Negrito               | `**texto**`          | `\textbf{texto}`                    |
+| Itálico               | `*texto*`            | `\textit{texto}`                    |
+| Lista não-ordenada    | `- item`             | `\begin{itemize} \item ... \end{itemize}` |
+| Lista ordenada        | `1. item`            | `\begin{enumerate} \item ... \end{enumerate}` |
+| Link                  | `[nome](url)`        | `\href{url}{nome}`                  |
+| Imagem                | `![](img.png)`       | `\includegraphics{img.png}`         |
+
+---
+
+## Código e blocos
+
+| O que você quer         | RMarkdown                           | LaTeX                                |
+|-------------------------|-------------------------------------|---------------------------------------|
+| Código embutido (inline)| `` `2+2` `` → 4                     | `\verb|2+2|`                          |
+| Bloco de código R       | ```` ```{r} summary(cars) ``` ````  | `\begin{lstlisting} ... \end{lstlisting}` |
+| Equação inline          | `$a^2 + b^2 = c^2$`                 | `\( a^2 + b^2 = c^2 \)`               |
+| Equação destacada       | `$$E = mc^2$$`                      | `\[ E = mc^2 \]` ou `\begin{equation}...\end{equation}` |
+
+---
+
+## Tabelas
+
+**RMarkdown:**
+```
+| Col1 | Col2 |
+|------|------|
+| A    | B    |
+```
+
+**Latex**
+``` {latex}
+\begin{tabular}{|c|c|}
+\hline
+Col1 & Col2 \\
+\hline
+A    & B    \\
+\hline
+\end{tabular}
+
+```
+
+
+## Outras funções úteis
+
+| O que você quer          | RMarkdown        | LaTeX                           |
+| ------------------------ | ---------------- | ------------------------------- |
+| Citação                  | `> texto citado` | `\begin{quote} ... \end{quote}` |
+| Linha horizontal         | `---`            | `\hrule`                        |
+| Nota de rodapé           | `Texto^[nota]`   | `Texto\footnote{nota}`          |
+| Referência bibliográfica | `[@chave]`       | `\cite{chave}` (com BibTeX)     |
+
+
+
+

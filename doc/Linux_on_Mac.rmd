@@ -196,6 +196,36 @@ Na sequencia:
 sudo apt update
 ```
 
+### Eduroam
+
+
+```{bash eval=FALSE}
+sudo apt install network-manager network-manager-gnome
+sudo apt install network-manager-openvpn-gnome
+sudo apt install network-manager-pptp-gnome
+sudo apt install network-manager-strongswan
+sudo apt install network-manager-iodine
+sudo apt install network-manager-l2tp
+sudo apt install network-manager-openconnect
+sudo apt install network-manager-openvpn
+sudo apt install network-manager-vpnc
+sudo apt install network-manager-gnome
+sudo apt install network-manager-openconnect-gnome
+
+```
+
+ Baixe o Cat [EduRoam](https://cat.eduroam.org/)
+ 
+
+```{bash eval=FALSE}
+wget -O eduroam-installer.py "https://cat.eduroam.org/user/API.php?action=downloadInstaller&lang=pt&profile=4193&device=linux&generatedfor=user&openroaming=0" 
+cd ~/Downloads
+chmod +x eduroam-installer.py
+python3 eduroam-installer.py
+```
+
+
+
 ## Dual Boot
 
 Após a instalação o Linux, optei por instalar o rEFInd no Linux Mint.
