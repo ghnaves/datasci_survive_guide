@@ -709,5 +709,15 @@ xinput list
 * Gestos avançados (3 dedos, zoom, etc.) ainda podem ser limitados, mas dá pra habilitar com **Fusuma** ou **libinput-gestures** depois.
 
 
+# Manutenções periódicas
+Atualizar todos os pacotes do sistema e aplicatvos instalados
+
+``` {bash eval=FALSE}
+sudo apt update
+sudo apt upgrade -y
+```
+
+
+
 
 
