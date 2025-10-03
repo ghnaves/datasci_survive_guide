@@ -180,6 +180,59 @@ Teclado *English (US, alt. intl.)*
 
 # Após a reinicialização
 
+## Instalação KDE Plasma
+```{bash eval=FALSE}
+sudo apt install kde-plasma-desktop
+```
+
+1. LightDM: Muito usado no Linux Mint, Xubuntu, elementary OS.
+
+Leve, rápido e altamente configurável (tem “greeters” diferentes como slick-greeter do Mint).
+
+*Prós*: Leve, fácil de customizar, bom suporte a vários DEs.
+
+*Cons*: Integração com Wayland não é tão forte quanto GDM.
+
+2. GDM (GNOME Display Manager): Padrão do GNOME e Ubuntu.
+
+Suporte nativo a Wayland (já vem habilitado).
+
+*Prós*: Ótima integração com GNOME, suporte sólido a Wayland.
+
+*Cons*: Mais pesado, menos customizável.
+
+3. SDDM (Simple Desktop Display Manager): Padrão do KDE Plasma.
+
+Muito personalizável com temas bonitos.
+
+*Prós*: Boa integração com Plasma, visual moderno.
+
+*Cons*: Pode ser instável em algumas distros com outros DEs.
+
+4. LXDM: Usado em LXDE/LXQt.
+
+Extremamente leve.
+
+*Prós*: Bom para máquinas antigas.
+
+*Cons*: Interface simples e limitada.
+
+**Qual escolher?**
+
+* Se você usa Cinnamon (Mint) → LightDM é a melhor opção.
+
+* Se você usa GNOME (ou quer Wayland nativo) → GDM é o ideal.
+
+* Se você usa KDE Plasma → SDDM é o mais integrado.
+
+* Se você quer só leveza em máquina antiga → LXDM.
+
+para mudar o gerenciador de sessão
+```{bash eval=FALSE}
+sudo dpkg-reconfigure gdm3   # ou lightdm, sddm...
+```
+
+
 ## Reconhecimento do chip Wi-Fi Broadcom
 
 Em Macs Intel mais antigos o Linux instala e roda, mas o chip Wi-Fi Broadcom não é reconhecido automaticamente porque o firmware é proprietário.
@@ -527,6 +580,9 @@ Foi na tentativa e erro...
 ```{bash eval=FALSE}
 xrandr --output eDP-1  --mode 2560x1600  --scale 1.2x1.2 --pos 0x0         
        --output HDMI-2 --mode 1920x1080  --scale 2x2     --pos 0x-2300
+       
+xrandr --output eDP-1  --mode 2560x1600  --scale 1.2x1.2 --pos 0x0 
+xrandr --output HDMI-2 --mode 1920x1080  --scale 2x2 --pos 0x-2300
 
 ```
 

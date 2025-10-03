@@ -11,7 +11,7 @@
 
 <meta name="author" content="Gustavo Givisiez" />
 
-<meta name="date" content="2025-09-30" />
+<meta name="date" content="2025-10-03" />
 
 <title>Instalação de Linux no Mac</title>
 
@@ -1662,7 +1662,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Instalação de Linux no Mac</h1>
 <h4 class="author">Gustavo Givisiez</h4>
-<h4 class="date">2025-09-30</h4>
+<h4 class="date">2025-10-03</h4>
 
 </div>
 
@@ -1836,72 +1836,115 @@ propriamente dita</h2>
 <div id="após-a-reinicialização" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Após a
 reinicialização</h1>
-<div id="reconhecimento-do-chip-wi-fi-broadcom" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Reconhecimento do
+<div id="instalação-kde-plasma" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Instalação KDE
+Plasma</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> apt install kde-plasma-desktop</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>LightDM: Muito usado no Linux Mint, Xubuntu, elementary OS.</li>
+</ol>
+<p>Leve, rápido e altamente configurável (tem “greeters” diferentes como
+slick-greeter do Mint).</p>
+<p><em>Prós</em>: Leve, fácil de customizar, bom suporte a vários
+DEs.</p>
+<p><em>Cons</em>: Integração com Wayland não é tão forte quanto GDM.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>GDM (GNOME Display Manager): Padrão do GNOME e Ubuntu.</li>
+</ol>
+<p>Suporte nativo a Wayland (já vem habilitado).</p>
+<p><em>Prós</em>: Ótima integração com GNOME, suporte sólido a
+Wayland.</p>
+<p><em>Cons</em>: Mais pesado, menos customizável.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>SDDM (Simple Desktop Display Manager): Padrão do KDE Plasma.</li>
+</ol>
+<p>Muito personalizável com temas bonitos.</p>
+<p><em>Prós</em>: Boa integração com Plasma, visual moderno.</p>
+<p><em>Cons</em>: Pode ser instável em algumas distros com outros
+DEs.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>LXDM: Usado em LXDE/LXQt.</li>
+</ol>
+<p>Extremamente leve.</p>
+<p><em>Prós</em>: Bom para máquinas antigas.</p>
+<p><em>Cons</em>: Interface simples e limitada.</p>
+<p><strong>Qual escolher?</strong></p>
+<ul>
+<li><p>Se você usa Cinnamon (Mint) → LightDM é a melhor opção.</p></li>
+<li><p>Se você usa GNOME (ou quer Wayland nativo) → GDM é o
+ideal.</p></li>
+<li><p>Se você usa KDE Plasma → SDDM é o mais integrado.</p></li>
+<li><p>Se você quer só leveza em máquina antiga → LXDM.</p></li>
+</ul>
+<p>para mudar o gerenciador de sessão</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> dpkg-reconfigure gdm3   <span class="co"># ou lightdm, sddm...</span></span></code></pre></div>
+</div>
+<div id="reconhecimento-do-chip-wi-fi-broadcom" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Reconhecimento do
 chip Wi-Fi Broadcom</h2>
 <p>Em Macs Intel mais antigos o Linux instala e roda, mas o chip Wi-Fi
 Broadcom não é reconhecido automaticamente porque o firmware é
 proprietário. Para ver qual chip está na maáquina:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">lshw</span> <span class="at">-C</span> network</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># BCM4360 802.11ac </span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">lshw</span> <span class="at">-C</span> network</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co"># BCM4360 802.11ac </span></span></code></pre></div>
 <p>Na sequencia:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
-<div id="eduroam" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Eduroam</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager network-manager-gnome</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-openvpn-gnome</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-pptp-gnome</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-strongswan</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-iodine</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-l2tp</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-openconnect</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-openvpn</span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-vpnc</span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-gnome</span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-openconnect-gnome</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
+<div id="eduroam" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Eduroam</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager network-manager-gnome</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-openvpn-gnome</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-pptp-gnome</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-strongswan</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-iodine</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-l2tp</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-openconnect</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-openvpn</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-vpnc</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-gnome</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="fu">sudo</span> apt install network-manager-openconnect-gnome</span></code></pre></div>
 <p>Baixe o Cat <a href="https://cat.eduroam.org/">EduRoam</a></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> eduroam-installer.py <span class="st">&quot;https://cat.eduroam.org/user/API.php?action=downloadInstaller&amp;lang=pt&amp;profile=4193&amp;device=linux&amp;generatedfor=user&amp;openroaming=0&quot;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">chmod</span> +x eduroam-installer.py</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="ex">python3</span> eduroam-installer.py</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> eduroam-installer.py <span class="st">&quot;https://cat.eduroam.org/user/API.php?action=downloadInstaller&amp;lang=pt&amp;profile=4193&amp;device=linux&amp;generatedfor=user&amp;openroaming=0&quot;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">chmod</span> +x eduroam-installer.py</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">python3</span> eduroam-installer.py</span></code></pre></div>
 </div>
 </div>
-<div id="dual-boot" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Dual Boot</h2>
+<div id="dual-boot" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Dual Boot</h2>
 <p>Após a instalação o Linux, optei por instalar o rEFInd no Linux
 Mint.</p>
-<div id="testes-iniciais" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Testes
+<div id="testes-iniciais" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Testes
 iniciais</h3>
 <p>Verifique se <code>/sys/firmware/efi</code> existe</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">ls</span> /sys/firmware/efi</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># config_table  fw_platform_size  mok-variables  runtime-map </span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># efivars       fw_vendor         runtime        systab </span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">ls</span> /sys/firmware/efi</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># config_table  fw_platform_size  mok-variables  runtime-map </span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># efivars       fw_vendor         runtime        systab </span></span></code></pre></div>
 <p>Tenho <code>/sys/firmware/efi</code> e isso confirma que o Linux Mint
 está rodando em modo UEFI. Dessa forma optei por configurar o GRUB
 nativo do Linux para o dual Boot pois tive informaçõès que o rEFInd às
 vezes exige confirguaração de chaves e acessos no Mac e que sua
 instalação, às vezes, tem impedido o acesso ao Mac.</p>
 </div>
-<div id="grub" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> GRUB</h3>
+<div id="grub" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> GRUB</h3>
 <p>O GRUB já está instalado junto com o Mint, no EFI. Para ele detectar
 o macOS, é preciso habilitar e rodar o os-prober:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">sudo</span> apt install os-prober</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/default/grub</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">sudo</span> apt install os-prober</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/default/grub</span></code></pre></div>
 <p>Dentro do arquivo grub config (/etc/default/grub), tire o comentário
 (<code>#</code>) da linha <code>GRUB_DISABLE_OS_PROBER=false</code> e
 atualize o GRUB:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">sudo</span> update-grub</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">sudo</span> os-prober</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">sudo</span> update-grub</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">sudo</span> os-prober</span></code></pre></div>
 <p>Não listou o Mac no boot. A solução foi ir para o rEFInd.</p>
 </div>
-<div id="refind" class="section level3" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> rEFInd</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">sudo</span> apt install refind</span></code></pre></div>
+<div id="refind" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> rEFInd</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">sudo</span> apt install refind</span></code></pre></div>
 <p>se o instalador não inciar automaticamente rode
 <code>sudo refind-install</code></p>
 <p>para testar a instalação <code>sudo ls /boot/efi/EFI/refind</code>
@@ -1909,121 +1952,121 @@ deve listar pelo menos os arquivos <code>refind.conf</code> e
 <code>refind_x64.efi</code></p>
 </div>
 </div>
-<div id="instalação-de-pacotes-e-utilitários" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Instalação de Pacotes
+<div id="instalação-de-pacotes-e-utilitários" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Instalação de Pacotes
 e Utilitários</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code></pre></div>
 </div>
-<div id="google-chorme-e-outros-utilitários" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Google Chorme e
+<div id="google-chorme-e-outros-utilitários" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Google Chorme e
 outros utilitários</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">wget</span> https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> google-chrome-stable_current_amd64.deb</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span>   <span class="co"># corrige dependências se faltar algo</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">wget</span> https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> google-chrome-stable_current_amd64.deb</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span>   <span class="co"># corrige dependências se faltar algo</span></span></code></pre></div>
 </div>
-<div id="git" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Git</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> git</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Seu usuário&quot;</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">&quot;seuemail@algumservidor.algumlugar&quot;</span></span></code></pre></div>
-<div id="configurar-o-github" class="section level3" number="3.5.1">
-<h3><span class="header-section-number">3.5.1</span> Configurar o
+<div id="git" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Git</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> git</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Seu usuário&quot;</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">&quot;seuemail@algumservidor.algumlugar&quot;</span></span></code></pre></div>
+<div id="configurar-o-github" class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Configurar o
 github</h3>
 <p>Gere uma nova chave:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">&quot;seuemail@exemplo.com&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">&quot;seuemail@exemplo.com&quot;</span></span></code></pre></div>
 <p>Copie a chave pública:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
 <p>Cole no GitHub em Settings &gt; SSH and GPG Keys &gt; New SSH Key</p>
 <p>Para puxar um projeto</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="bu">cd</span> ~/Documentos   <span class="co"># ou outra pasta onde quer guardar o projeto</span></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:usuario/projeto.git</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="bu">cd</span> ~/Documentos   <span class="co"># ou outra pasta onde quer guardar o projeto</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:usuario/projeto.git</span></code></pre></div>
 <p>Para empurrar um projeto</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Alterações dentro do Linux Mint&quot;</span></span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Alterações dentro do Linux Mint&quot;</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
 </div>
 </div>
-<div id="tex" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Tex</h2>
+<div id="tex" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Tex</h2>
 <p>Versão completa:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-full</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-full</span></code></pre></div>
 <p>Versão Enxuta:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra</span></code></pre></div>
 </div>
-<div id="r-e-rstudio" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> R e RStudio</h2>
+<div id="r-e-rstudio" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> R e RStudio</h2>
 <p>R base (repositório oficial do Mint/Ubuntu):</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> r-base r-base-dev</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> r-base r-base-dev</span></code></pre></div>
 <p>RStudio: não está no apt padrão. Baixe o .deb mais recente em: <a href="https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb" class="uri">https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb</a>
 E instale com:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> rstudio-2025.09.0-387-amd64.deb</span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> rstudio-2025.09.0-387-amd64.deb</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span></span></code></pre></div>
 </div>
-<div id="python" class="section level2" number="3.8">
-<h2><span class="header-section-number">3.8</span> Python</h2>
+<div id="python" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> Python</h2>
 <p>O Mint já traz Python, mas configure o ambiente:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> python3 python3-pip python3-venv jupyter-notebook</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> python3 python3-pip python3-venv jupyter-notebook</span></code></pre></div>
 <p>Depois, crie ambientes isolados:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ~/venvs/ds</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="bu">source</span> ~/venvs/ds/bin/activate</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib seaborn scikit-learn jupyterlab</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ~/venvs/ds</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="bu">source</span> ~/venvs/ds/bin/activate</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib seaborn scikit-learn jupyterlab</span></code></pre></div>
 </div>
-<div id="extras-úteis" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> Extras úteis</h2>
+<div id="extras-úteis" class="section level2" number="3.10">
+<h2><span class="header-section-number">3.10</span> Extras úteis</h2>
 <p>Compiladores e libs comuns (R/Python precisam às vezes):</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> build-essential libssl-dev libcurl4-openssl-dev libxml2-dev</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> build-essential libssl-dev libcurl4-openssl-dev libxml2-dev</span></code></pre></div>
 </div>
-<div id="zotero" class="section level2" number="3.10">
-<h2><span class="header-section-number">3.10</span> Zotero</h2>
+<div id="zotero" class="section level2" number="3.11">
+<h2><span class="header-section-number">3.11</span> Zotero</h2>
 <p>siga o original em <a href="https://github.com/retorquere/zotero-deb/blob/master/README.md" class="uri">https://github.com/retorquere/zotero-deb/blob/master/README.md</a></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh <span class="kw">|</span> <span class="fu">sudo</span> bash</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="fu">sudo</span> apt install zotero</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh <span class="kw">|</span> <span class="fu">sudo</span> bash</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="fu">sudo</span> apt install zotero</span></code></pre></div>
 </div>
-<div id="qgis" class="section level2" number="3.11">
-<h2><span class="header-section-number">3.11</span> QGIS</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> qgis qgis-plugin-grass</span></code></pre></div>
+<div id="qgis" class="section level2" number="3.12">
+<h2><span class="header-section-number">3.12</span> QGIS</h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> qgis qgis-plugin-grass</span></code></pre></div>
 </div>
-<div id="steam" class="section level2" number="3.12">
-<h2><span class="header-section-number">3.12</span> Steam</h2>
+<div id="steam" class="section level2" number="3.13">
+<h2><span class="header-section-number">3.13</span> Steam</h2>
 <p>O Steam está no repositório “multiverse” (no Ubuntu/Mint).
 Normalmente já vem habilitado, mas se quiser garantir:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> software-properties-common</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository multiverse</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> software-properties-common</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository multiverse</span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
 <p>Com o repositório ativo</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> steam</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> steam</span></code></pre></div>
 </div>
-<div id="adobe-reader" class="section level2" number="3.13">
-<h2><span class="header-section-number">3.13</span> Adobe reader</h2>
+<div id="adobe-reader" class="section level2" number="3.14">
+<h2><span class="header-section-number">3.14</span> Adobe reader</h2>
 <p>No Linux, o Adobe Acrobat Reader não é mais mantido oficialmente em
 muitas distros, mas ainda dá para instalar via .deb (Ubuntu/Debian) e
 usar o apt. Mas,a maioria das distros já vem com um leitor nativo, e
 alguns até têm recursos bem avançados.</p>
 <p>Para instalar o Adobe, siga os comandos a seguir:</p>
 <p>Baixe a versão deb</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">wget</span> https://ardownload2.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">wget</span> https://ardownload2.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb</span></code></pre></div>
 <p>Ative suporte a 32 bits (se o sistema for 64 bits)</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">--add-architecture</span> i386</span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">--add-architecture</span> i386</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
 <p>Instale dependências necessárias</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">sudo</span> apt install libc6:i386 libstdc++6:i386 libgtk2.0-0:i386 libxml2:i386 libnss3:i386 libcanberra-gtk-module:i386</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">sudo</span> apt install libc6:i386 libstdc++6:i386 libgtk2.0-0:i386 libxml2:i386 libnss3:i386 libcanberra-gtk-module:i386</span></code></pre></div>
 <p>Instale o Adobe Acrobat Reader</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> ~/Downloads/AdbeRdr9.5.5-1_i386linux_enu.deb</span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install   <span class="co"># para corrigir dependências</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> ~/Downloads/AdbeRdr9.5.5-1_i386linux_enu.deb</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install   <span class="co"># para corrigir dependências</span></span></code></pre></div>
 </div>
-<div id="spotfy" class="section level2" number="3.14">
-<h2><span class="header-section-number">3.14</span> Spotfy</h2>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">sudo</span> apt install curl gnupg <span class="at">-y</span></span>
-<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sS</span> https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg <span class="kw">|</span> <span class="fu">sudo</span> gpg <span class="at">--dearmor</span> <span class="at">-o</span> /etc/apt/trusted.gpg.d/spotify.gpg</span>
-<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;deb http://repository.spotify.com stable non-free&quot;</span> <span class="kw">|</span> <span class="fu">sudo</span> tee /etc/apt/sources.list.d/spotify.list</span>
-<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a><span class="fu">sudo</span> apt install spotify-client <span class="at">-y</span></span></code></pre></div>
+<div id="spotfy" class="section level2" number="3.15">
+<h2><span class="header-section-number">3.15</span> Spotfy</h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="fu">sudo</span> apt install curl gnupg <span class="at">-y</span></span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sS</span> https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg <span class="kw">|</span> <span class="fu">sudo</span> gpg <span class="at">--dearmor</span> <span class="at">-o</span> /etc/apt/trusted.gpg.d/spotify.gpg</span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;deb http://repository.spotify.com stable non-free&quot;</span> <span class="kw">|</span> <span class="fu">sudo</span> tee /etc/apt/sources.list.d/spotify.list</span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a><span class="fu">sudo</span> apt install spotify-client <span class="at">-y</span></span></code></pre></div>
 </div>
 </div>
 <div id="drives-e-outras-configurações" class="section level1" number="4">
@@ -2033,29 +2076,29 @@ configurações</h1>
 <h2><span class="header-section-number">4.1</span> Vídeo</h2>
 <p>O monitor adicional ficou com o texto gigante.</p>
 <p>Primeiro Diagnóstico para avaliar qual a resolução limite.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="ex">xrandr</span></span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="co"># Screen 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 </span></span>
-<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="co"># eDP-1 connected primary 2560x1600+0+1080 (normal left inverted right x axis y axis) 286mm x 179mm </span></span>
-<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a><span class="co">#    2560x1600     59.97*+ </span></span>
-<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a><span class="co">#    2560x1440     59.97   </span></span>
-<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a><span class="co"># (...) </span></span>
-<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a><span class="co">#    360x202       59.97   </span></span>
-<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a><span class="co">#    320x180       59.97   </span></span>
-<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a><span class="co"># DP-1 disconnected (normal left inverted right x axis y axis) </span></span>
-<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a><span class="co"># HDMI-1 disconnected (normal left inverted right x axis y axis) </span></span>
-<span id="cb35-12"><a href="#cb35-12" tabindex="-1"></a><span class="co"># DP-2 disconnected (normal left inverted right x axis y axis) </span></span>
-<span id="cb35-13"><a href="#cb35-13" tabindex="-1"></a><span class="co"># HDMI-2 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm </span></span>
-<span id="cb35-14"><a href="#cb35-14" tabindex="-1"></a><span class="co">#    1920x1080     60.00*+  50.00    59.94   </span></span>
-<span id="cb35-15"><a href="#cb35-15" tabindex="-1"></a><span class="co">#    1680x1050     59.88 </span></span>
-<span id="cb35-16"><a href="#cb35-16" tabindex="-1"></a><span class="co">#   (...) </span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="ex">xrandr</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a><span class="co"># Screen 0: minimum 320 x 200, current 2560 x 2680, maximum 16384 x 16384 </span></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a><span class="co"># eDP-1 connected primary 2560x1600+0+1080 (normal left inverted right x axis y axis) 286mm x 179mm </span></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a><span class="co">#    2560x1600     59.97*+ </span></span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a><span class="co">#    2560x1440     59.97   </span></span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a><span class="co"># (...) </span></span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a><span class="co">#    360x202       59.97   </span></span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a><span class="co">#    320x180       59.97   </span></span>
+<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a><span class="co"># DP-1 disconnected (normal left inverted right x axis y axis) </span></span>
+<span id="cb37-11"><a href="#cb37-11" tabindex="-1"></a><span class="co"># HDMI-1 disconnected (normal left inverted right x axis y axis) </span></span>
+<span id="cb37-12"><a href="#cb37-12" tabindex="-1"></a><span class="co"># DP-2 disconnected (normal left inverted right x axis y axis) </span></span>
+<span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a><span class="co"># HDMI-2 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm </span></span>
+<span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a><span class="co">#    1920x1080     60.00*+  50.00    59.94   </span></span>
+<span id="cb37-15"><a href="#cb37-15" tabindex="-1"></a><span class="co">#    1680x1050     59.88 </span></span>
+<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a><span class="co">#   (...) </span></span></code></pre></div>
 <p>Isso lista os monitores e as resoluções detectadas. A HDMI 2 é
 limitada a 1920x1080 o que está igual ao Mac M1.</p>
 <p>Tentei alterar a escala no ajuste do monitor mas o Minte está
 alterando os ois monitores simultaneamente.</p>
 <p>Optei por usar escalonamento fracionado por monitor ativanado o
 “Fractional Scaling” no Cinnamon, que usa uma flag experimental:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="ex">gsettings</span> set org.cinnamon.muffin experimental-features <span class="st">&quot;[&#39;scale-monitor-framebuffer&#39;]&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="ex">gsettings</span> set org.cinnamon.muffin experimental-features <span class="st">&quot;[&#39;scale-monitor-framebuffer&#39;]&quot;</span></span></code></pre></div>
 <p>Depois:</p>
 <p>Reinicie a sessão (ou o computador).</p>
 <p>Vá em Menu &gt; Configuraçoes do Sistema &gt; Monitor</p>
@@ -2067,32 +2110,35 @@ monitor (ex.: 100%, 125%, 150%). Assim, você pode deixar o interno
 <code>pos</code> ajusta a posição do monitor. Por exemplo
 <code>pos 0x-2300</code> coloca o monitor HDMI-2 acima do moniotor
 eDP-1. Não entedi as contas. Foi na tentativa e erro…</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1  <span class="at">--mode</span> 2560x1600  <span class="at">--scale</span> 1.2x1.2 <span class="at">--pos</span> 0x0         </span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>       <span class="ex">--output</span> HDMI-2 <span class="at">--mode</span> 1920x1080  <span class="at">--scale</span> 2x2     <span class="at">--pos</span> 0x-2300</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1  <span class="at">--mode</span> 2560x1600  <span class="at">--scale</span> 1.2x1.2 <span class="at">--pos</span> 0x0         </span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>       <span class="ex">--output</span> HDMI-2 <span class="at">--mode</span> 1920x1080  <span class="at">--scale</span> 2x2     <span class="at">--pos</span> 0x-2300</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>       </span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1  <span class="at">--mode</span> 2560x1600  <span class="at">--scale</span> 1.2x1.2 <span class="at">--pos</span> 0x0 </span>
+<span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> HDMI-2 <span class="at">--mode</span> 1920x1080  <span class="at">--scale</span> 2x2 <span class="at">--pos</span> 0x-2300</span></code></pre></div>
 <p>Para resetar tudo:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="dt">\</span></span>
-<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>       <span class="at">--output</span> HDMI-2 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="at">--right-of</span> eDP-1</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="ex">xrandr</span> <span class="at">--output</span> eDP-1 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="dt">\</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>       <span class="at">--output</span> HDMI-2 <span class="at">--scale</span> 1x1 <span class="at">--auto</span> <span class="at">--right-of</span> eDP-1</span></code></pre></div>
 </div>
 <div id="baterias" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Baterias</h2>
 <p>Instalar utilitários</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">sudo</span> apt install acpi upower <span class="at">-y</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">sudo</span> apt install acpi upower <span class="at">-y</span></span></code></pre></div>
 <p>Testar informações básicas</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># Status rápido</span></span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="ex">acpi</span> <span class="at">-V</span></span>
-<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a><span class="co"># Informações detalhadas</span></span>
-<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a><span class="ex">upower</span> <span class="at">-i</span> <span class="va">$(</span><span class="ex">upower</span> <span class="at">-e</span> <span class="kw">|</span> <span class="fu">grep</span> BAT<span class="va">)</span></span>
-<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a><span class="co"># Monitorar em tempo real</span></span>
-<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a><span class="ex">watch</span> <span class="at">-n</span> 5 upower <span class="at">-i</span> <span class="va">$(</span><span class="ex">upower</span> <span class="at">-e</span> <span class="kw">|</span> <span class="fu">grep</span> BAT<span class="va">)</span></span>
-<span id="cb40-9"><a href="#cb40-9" tabindex="-1"></a></span>
-<span id="cb40-10"><a href="#cb40-10" tabindex="-1"></a><span class="co"># Conferir arquivos do sistema: Muitos Macs expõem dados direto mas nem sempre</span></span>
-<span id="cb40-11"><a href="#cb40-11" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/capacity</span>
-<span id="cb40-12"><a href="#cb40-12" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/status</span>
-<span id="cb40-13"><a href="#cb40-13" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/voltage_now</span>
-<span id="cb40-14"><a href="#cb40-14" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/cycle_count</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="co"># Status rápido</span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="ex">acpi</span> <span class="at">-V</span></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a><span class="co"># Informações detalhadas</span></span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a><span class="ex">upower</span> <span class="at">-i</span> <span class="va">$(</span><span class="ex">upower</span> <span class="at">-e</span> <span class="kw">|</span> <span class="fu">grep</span> BAT<span class="va">)</span></span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a><span class="co"># Monitorar em tempo real</span></span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a><span class="ex">watch</span> <span class="at">-n</span> 5 upower <span class="at">-i</span> <span class="va">$(</span><span class="ex">upower</span> <span class="at">-e</span> <span class="kw">|</span> <span class="fu">grep</span> BAT<span class="va">)</span></span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a><span class="co"># Conferir arquivos do sistema: Muitos Macs expõem dados direto mas nem sempre</span></span>
+<span id="cb42-11"><a href="#cb42-11" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/capacity</span>
+<span id="cb42-12"><a href="#cb42-12" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/status</span>
+<span id="cb42-13"><a href="#cb42-13" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/voltage_now</span>
+<span id="cb42-14"><a href="#cb42-14" tabindex="-1"></a><span class="fu">cat</span> /sys/class/power_supply/BAT0/cycle_count</span></code></pre></div>
 </div>
 <div id="magic-mouse" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Magic Mouse</h2>
@@ -2102,59 +2148,59 @@ o Magic Mouse 2 via Bluetooth, mas ele não aparece como dispositivo de
 entrada (sem ponteiro, sem scroll, sem clique).</p>
 <p>Instalação do driver <code>magicmouse-hid</code> 1. Instalar
 dependências</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> dkms git build-essential linux-headers-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-r</span><span class="va">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> dkms git build-essential linux-headers-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-r</span><span class="va">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Clonar o repositório</li>
 </ol>
-<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RicardoEPRodrigues/magicmouse-hid.git</span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="bu">cd</span> magicmouse-hid</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RicardoEPRodrigues/magicmouse-hid.git</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="bu">cd</span> magicmouse-hid</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Criar um <code>dkms.conf</code> Criar o arquivo dkms.conf na raiz do
 projeto.</li>
 </ol>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="va">PACKAGE_NAME</span><span class="op">=</span><span class="st">&quot;magicmouse-hid&quot;</span></span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="va">PACKAGE_VERSION</span><span class="op">=</span><span class="st">&quot;1.0&quot;</span></span>
-<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a><span class="va">BUILT_MODULE_NAME</span><span class="op">[</span><span class="dv">0</span><span class="op">]=</span><span class="st">&quot;hid_magicmouse&quot;</span></span>
-<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a><span class="va">DEST_MODULE_LOCATION</span><span class="op">[</span><span class="dv">0</span><span class="op">]=</span><span class="st">&quot;/updates/dkms&quot;</span></span>
-<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a><span class="va">AUTOINSTALL</span><span class="op">=</span><span class="st">&quot;yes&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="va">PACKAGE_NAME</span><span class="op">=</span><span class="st">&quot;magicmouse-hid&quot;</span></span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="va">PACKAGE_VERSION</span><span class="op">=</span><span class="st">&quot;1.0&quot;</span></span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a><span class="va">BUILT_MODULE_NAME</span><span class="op">[</span><span class="dv">0</span><span class="op">]=</span><span class="st">&quot;hid_magicmouse&quot;</span></span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a><span class="va">DEST_MODULE_LOCATION</span><span class="op">[</span><span class="dv">0</span><span class="op">]=</span><span class="st">&quot;/updates/dkms&quot;</span></span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a><span class="va">AUTOINSTALL</span><span class="op">=</span><span class="st">&quot;yes&quot;</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Instalar via DKMS</li>
 </ol>
 <p>Esse driver usa DKMS para manter a compatibilidade entre versões do
 kernel.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">sudo</span> cp <span class="at">-r</span> ~/projects/magicmouse-hid /usr/src/magicmouse-hid-1.0</span>
-<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">sudo</span> dkms add <span class="at">-m</span> magicmouse-hid <span class="at">-v</span> 1.0</span>
-<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="fu">sudo</span> dkms build <span class="at">-m</span> magicmouse-hid <span class="at">-v</span> 1.0</span>
-<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a><span class="fu">sudo</span> dkms install <span class="at">-m</span> magicmouse-hid <span class="at">-v</span> 1.0</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">sudo</span> cp <span class="at">-r</span> ~/projects/magicmouse-hid /usr/src/magicmouse-hid-1.0</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="fu">sudo</span> dkms add <span class="at">-m</span> magicmouse-hid <span class="at">-v</span> 1.0</span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a><span class="fu">sudo</span> dkms build <span class="at">-m</span> magicmouse-hid <span class="at">-v</span> 1.0</span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a><span class="fu">sudo</span> dkms install <span class="at">-m</span> magicmouse-hid <span class="at">-v</span> 1.0</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Carregar o módulo</li>
 </ol>
-<div class="sourceCode" id="cb45"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="fu">sudo</span> modprobe hid_magicmouse</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="fu">sudo</span> modprobe hid_magicmouse</span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
 <li>Verificar se o módulo foi carregado</li>
 </ol>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">lsmod</span> <span class="kw">|</span> <span class="fu">grep</span> magicmouse</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">lsmod</span> <span class="kw">|</span> <span class="fu">grep</span> magicmouse</span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>Reconectar o Magic Mouse</li>
 </ol>
 <p>Desligue e ligue o mouse novamente → depois reconecte no
 <strong>Configurações → Bluetooth</strong> do Mint ou pelo terminal:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="ex">bluetoothctl</span></span>
-<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a><span class="ex">power</span> on</span>
-<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a><span class="ex">agent</span> on</span>
-<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a><span class="ex">default-agent</span></span>
-<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a><span class="ex">scan</span> on         <span class="co"># vai listar MACs, anote o do Magic Mouse</span></span>
-<span id="cb47-6"><a href="#cb47-6" tabindex="-1"></a><span class="ex">scan</span> off        <span class="co"># pare o scan</span></span>
-<span id="cb47-7"><a href="#cb47-7" tabindex="-1"></a><span class="ex">pair</span> XX:XX:XX:XX:XX:XX</span>
-<span id="cb47-8"><a href="#cb47-8" tabindex="-1"></a><span class="ex">connect</span> XX:XX:XX:XX:XX:XX</span>
-<span id="cb47-9"><a href="#cb47-9" tabindex="-1"></a><span class="ex">trust</span> XX:XX:XX:XX:XX:XX</span>
-<span id="cb47-10"><a href="#cb47-10" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="ex">bluetoothctl</span></span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a><span class="ex">power</span> on</span>
+<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a><span class="ex">agent</span> on</span>
+<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a><span class="ex">default-agent</span></span>
+<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a><span class="ex">scan</span> on         <span class="co"># vai listar MACs, anote o do Magic Mouse</span></span>
+<span id="cb49-6"><a href="#cb49-6" tabindex="-1"></a><span class="ex">scan</span> off        <span class="co"># pare o scan</span></span>
+<span id="cb49-7"><a href="#cb49-7" tabindex="-1"></a><span class="ex">pair</span> XX:XX:XX:XX:XX:XX</span>
+<span id="cb49-8"><a href="#cb49-8" tabindex="-1"></a><span class="ex">connect</span> XX:XX:XX:XX:XX:XX</span>
+<span id="cb49-9"><a href="#cb49-9" tabindex="-1"></a><span class="ex">trust</span> XX:XX:XX:XX:XX:XX</span>
+<span id="cb49-10"><a href="#cb49-10" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div>
 <hr />
 <ol start="8" style="list-style-type: decimal">
 <li>Conferir no sistema</li>
 </ol>
-<div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="ex">xinput</span> list</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="ex">xinput</span> list</span></code></pre></div>
 <ol start="9" style="list-style-type: decimal">
 <li>Observações</li>
 </ol>
