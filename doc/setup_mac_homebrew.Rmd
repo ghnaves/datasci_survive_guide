@@ -160,6 +160,7 @@ brew install --cask google-drive
 brew install --cask publish-or-perish 
 brew install --cask steam
 brew install --cask zotero
+brew install --cask zoom
 brew install --cask google-chrome
 brew install --cask firefox
 brew install --cask spotify
