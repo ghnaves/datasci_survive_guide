@@ -128,7 +128,7 @@ Certifique-se de que o instalador vai usar /dev/nvme0n1p1 (200 MB EFI) para o bo
 
 ## Formatação MacBook 11,3
 
-No terminal do Linux do computador MacBook 11,3
+No terminal do Linux do computador MacBook 11,3 (MacBook Pro Retina de 15 polegadas, “Late 2013” ou “Mid 2014”)
 
 ```{bash  eval=FALSE}
  sudo fdisk -l
