@@ -412,7 +412,7 @@ sudo apt install -y r-base r-base-dev
 ```
 
 RStudio: não está no apt padrão.
-Baixe o .deb mais recente em: <https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.1-401-amd64.deb> E instale com:
+Baixe o .deb mais recente em: vamos <https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.1-401-amd64.deb> E instale com:
 
 ```{bash eval=FALSE}
 cd ~/Downloads
