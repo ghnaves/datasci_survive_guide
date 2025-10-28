@@ -383,9 +383,10 @@ git clone git@github.com:usuario/projeto.git
 Para empurrar um projeto
 
 ```{bash eval=FALSE}
+git pull origin main #Sempre faça isso se estiver trabalhndo com o projeto em mais de um local
 git add .
 git commit -m "Alterações dentro do Linux Mint"
-git push -u origin main
+git push origin main
 
 ```
 

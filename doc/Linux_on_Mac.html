@@ -1984,9 +1984,10 @@ github</h3>
 <span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="bu">cd</span> ~/Documentos   <span class="co"># ou outra pasta onde quer guardar o projeto</span></span>
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:usuario/projeto.git</span></code></pre></div>
 <p>Para empurrar um projeto</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Alterações dentro do Linux Mint&quot;</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> pull origin main <span class="co">#Sempre faça isso se estiver trabalhndo com o projeto em mais de um local</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Alterações dentro do Linux Mint&quot;</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div>
 </div>
 </div>
 <div id="tex" class="section level2" number="3.7">
@@ -2000,10 +2001,11 @@ github</h3>
 <h2><span class="header-section-number">3.8</span> R e RStudio</h2>
 <p>R base (repositório oficial do Mint/Ubuntu):</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> r-base r-base-dev</span></code></pre></div>
-<p>RStudio: não está no apt padrão. Baixe o .deb mais recente em: <a href="https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb" class="uri">https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.0-387-amd64.deb</a>
+<p>RStudio: não está no apt padrão. Baixe o .deb mais recente em: vamos
+<a href="https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.1-401-amd64.deb" class="uri">https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.09.1-401-amd64.deb</a>
 E instale com:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> rstudio-2025.09.0-387-amd64.deb</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> rstudio-2025.09.1-401-amd64.deb</span>
 <span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="fu">sudo</span> apt <span class="at">-f</span> install <span class="at">-y</span></span></code></pre></div>
 </div>
 <div id="python" class="section level2" number="3.9">
