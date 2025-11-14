@@ -60,6 +60,16 @@ Adicionar no GitHub
 * Dê um nome
 
 
+Para empurrar um projeto
+
+```{bash eval=FALSE}
+git pull origin main #Sempre faça isso se estiver trabalhndo com o projeto em mais de um local
+git add .
+git commit -m "Alterações dentro do Linux Mint"
+git push origin main
+
+```
+
 ## Apps gráficos
 
 ```{bash eval=FALSE}       
@@ -166,6 +176,7 @@ brew install --cask firefox
 brew install --cask spotify
 brew install --cask pika
 brew install --cask balenaetcher
+brew install --cask filezilla
 ```
 
 ## Atualizações periódicas
