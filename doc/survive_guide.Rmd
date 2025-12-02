@@ -71,3 +71,78 @@ Lembro-me também do OS/2 Warp, da IBM. Ele surgiu com propostas parecidas às d
 Assim, minha trajetória entre sistemas operacionais é, em parte, também uma história de filosofias distintas. O Windows me ensinou informática no caos de DLLs e reinstalações constantes. O macOS me trouxe estabilidade e refinamento de usabilidade, com Homebrew como ferramenta indispensável. O Linux, por sua vez, me apresenta liberdade absoluta e poder técnico, mas cobra atenção, aprendizado e — muitas vezes — algum sacrifício em softwares comerciais. Não há um “sistema perfeito”, mas cada um traz a marca de seu tempo, da sua comunidade e da sua filosofia de design.
 
 
+# Trabalhando com o Git e GitHub no terminal
+
+```{bash eval=FALSE}
+git pull origin main #Sempre faça isso se estiver trabalhndo com o projeto em mais de um local
+git add .
+git commit -m "Alterações realizadas"
+git push origin main
+
+```
+
+
+# Cheatsheet RMarkdown & LaTeX
+
+Este documento resume os principais comandos de **RMarkdown** e **LaTeX** lado a lado.
+
+---
+
+## Estrutura de texto
+
+| O que você quer       | RMarkdown (`.Rmd`)   | LaTeX (`.tex`)                     |
+|-----------------------|----------------------|-------------------------------------|
+| Título nível 1        | `# Título`           | `\section{Título}`                  |
+| Título nível 2        | `## Subtítulo`       | `\subsection{Subtítulo}`            |
+| Título nível 3        | `### Subsubtítulo`   | `\subsubsection{Título}`            |
+| Negrito               | `**texto**`          | `\textbf{texto}`                    |
+| Itálico               | `*texto*`            | `\textit{texto}`                    |
+| Lista não-ordenada    | `- item`             | `\begin{itemize} \item ... \end{itemize}` |
+| Lista ordenada        | `1. item`            | `\begin{enumerate} \item ... \end{enumerate}` |
+| Link                  | `[nome](url)`        | `\href{url}{nome}`                  |
+| Imagem                | `![](img.png)`       | `\includegraphics{img.png}`         |
+
+---
+
+## Código e blocos
+
+| O que você quer         | RMarkdown                           | LaTeX                                |
+|-------------------------|-------------------------------------|---------------------------------------|
+| Código embutido (inline)| `` `2+2` `` → 4                     | `\verb|2+2|`                          |
+| Bloco de código R       | ```` ```{r} summary(cars) ``` ````  | `\begin{lstlisting} ... \end{lstlisting}` |
+| Equação inline          | `$a^2 + b^2 = c^2$`                 | `\( a^2 + b^2 = c^2 \)`               |
+| Equação destacada       | `$$E = mc^2$$`                      | `\[ E = mc^2 \]` ou `\begin{equation}...\end{equation}` |
+
+---
+
+## Tabelas
+
+**RMarkdown:**
+```
+| Col1 | Col2 |
+|------|------|
+| A    | B    |
+```
+
+**Latex**
+``` {latex}
+\begin{tabular}{|c|c|}
+\hline
+Col1 & Col2 \\
+\hline
+A    & B    \\
+\hline
+\end{tabular}
+
+```
+
+
+## Outras funções úteis
+
+| O que você quer          | RMarkdown        | LaTeX                           |
+| ------------------------ | ---------------- | ------------------------------- |
+| Citação                  | `> texto citado` | `\begin{quote} ... \end{quote}` |
+| Linha horizontal         | `---`            | `\hrule`                        |
+| Nota de rodapé           | `Texto^[nota]`   | `Texto\footnote{nota}`          |
+| Referência bibliográfica | `[@chave]`       | `\cite{chave}` (com BibTeX)     |
+
