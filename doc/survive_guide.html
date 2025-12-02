@@ -11,7 +11,7 @@
 
 <meta name="author" content="Gustavo Givisiez" />
 
-<meta name="date" content="2025-09-29" />
+<meta name="date" content="2025-12-02" />
 
 <title>Guia de Sobrevivência</title>
 
@@ -1378,6 +1378,116 @@ ul.task-list{list-style: none;}
 
 
 
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } 
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } 
+code span.at { color: #204a87; } 
+code span.bn { color: #0000cf; } 
+code span.cf { color: #204a87; font-weight: bold; } 
+code span.ch { color: #4e9a06; } 
+code span.cn { color: #8f5902; } 
+code span.co { color: #8f5902; font-style: italic; } 
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } 
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } 
+code span.dt { color: #204a87; } 
+code span.dv { color: #0000cf; } 
+code span.er { color: #a40000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #0000cf; } 
+code span.fu { color: #204a87; font-weight: bold; } 
+code span.im { } 
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } 
+code span.kw { color: #204a87; font-weight: bold; } 
+code span.op { color: #ce5c00; font-weight: bold; } 
+code span.ot { color: #8f5902; } 
+code span.pp { color: #8f5902; font-style: italic; } 
+code span.sc { color: #ce5c00; font-weight: bold; } 
+code span.ss { color: #4e9a06; } 
+code span.st { color: #4e9a06; } 
+code span.va { color: #000000; } 
+code span.vs { color: #4e9a06; } 
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } 
+.sourceCode .row {
+width: 100%;
+}
+.sourceCode {
+overflow-x: auto;
+}
+.code-folding-btn {
+margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -1552,7 +1662,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Guia de Sobrevivência</h1>
 <h4 class="author">Gustavo Givisiez</h4>
-<h4 class="date">2025-09-29</h4>
+<h4 class="date">2025-12-02</h4>
 
 </div>
 
@@ -1690,6 +1800,233 @@ sistema de forma mais eficiente. O Homebrew, com sua simplicidade e
 eficiência controla melhor a instalação e gerenciamento de softwares no
 macOS. Ele traz a promessa de um sistema mais limpo, organizado e fácil
 de manter.</p>
+<p>No entanto, nunca deixei de observar o Linux. Mas, durante muito
+tempo, ele me pareceu mais um manifesto político do que um sistema
+operacional para o dia a dia: uma ferramenta <em>contra</em> big techs,
+para entusiastas de software livre e defensores da independência
+digital. De certa forma, essa impressão não é totalmente incorreta. O
+Linux nasceu como alternativa comunitária, e até hoje carrega um caráter
+de resistência. Funciona impressionantemente bem em hardwares antigos,
+ressuscitando máquinas consideradas obsoletas pelo Windows ou pelo
+macOS. É incrivelmente flexível: tudo pode ser configurado, recompilado
+e ajustado. Essa liberdade, porém, vem acompanhada de uma complexidade
+que assusta o usuário comum.</p>
+<p>E há outro ponto: para quem depende de certos softwares comerciais
+(Adobe, Microsoft Office, AutoCAD, etc.), o Linux ainda é bem limitado.
+Existem alternativas como LibreOffice, GIMP e Inkscape, que atendem a
+muitas demandas, mas raramente substituem integralmente suas
+contrapartes proprietárias. Até os jogos, que por muito tempo foram uma
+barreira, hoje rodam de forma surpreendente via Steam Proton — mas ainda
+ficam atrás do ecossistema do Windows.</p>
+<p>Onde o Linux realmente brilha é em três frentes: servidores,
+supercomputação e desenvolvimento. Ele é a espinha dorsal da internet
+moderna, dominando datacenters e serviços em nuvem. É também o ambiente
+preferencial para programadores, cientistas de dados e engenheiros de
+software, justamente por ser estável, seguro, leve e altamente
+personalizável. Nesse campo, o Linux não é <em>alternativa</em>, mas o
+<strong>padrão</strong>.</p>
+<p>Essa diferença de propósitos fica clara quando comparo as filosofias.
+Windows e macOS sempre priorizaram a experiência do usuário: esconderam
+a complexidade, apostaram em interfaces gráficas coesas, minimizaram a
+exposição ao terminal. O Linux fez o caminho oposto: nasceu para
+administradores e desenvolvedores, e as interfaces gráficas sempre foram
+opcionais, um verniz colocado sobre o núcleo. Perceber que o <em>retorno
+ao terminal</em> não foi um retrocesso, mas sim evolução, foi uma quebra
+de paradigma pessoal. Hoje, vejo o terminal como ferramenta madura, que
+oferece controle e previsibilidade, ao invés de confusão.</p>
+<p>Lembro-me também do OS/2 Warp, da IBM. Ele surgiu com propostas
+parecidas às do Linux: estabilidade, multitarefa real, suporte avançado
+quando o Windows ainda era frágil. Mas perdeu a guerra comercial para o
+Windows 95, que era mais amigável e vinha com marketing pesado. O OS/2
+resistiu em nichos bancários e corporativos, mas acabou esquecido,
+sobrevivendo apenas em projetos de nicho como o ArcaOS. Um bom lembrete
+de que qualidade técnica nem sempre basta sem adesão de mercado.</p>
+<p>Assim, minha trajetória entre sistemas operacionais é, em parte,
+também uma história de filosofias distintas. O Windows me ensinou
+informática no caos de DLLs e reinstalações constantes. O macOS me
+trouxe estabilidade e refinamento de usabilidade, com Homebrew como
+ferramenta indispensável. O Linux, por sua vez, me apresenta liberdade
+absoluta e poder técnico, mas cobra atenção, aprendizado e — muitas
+vezes — algum sacrifício em softwares comerciais. Não há um “sistema
+perfeito”, mas cada um traz a marca de seu tempo, da sua comunidade e da
+sua filosofia de design.</p>
+</div>
+</div>
+<div id="trabalhando-com-o-git-e-github-no-terminal" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Trabalhando com o Git e
+GitHub no terminal</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> pull origin main <span class="co">#Sempre faça isso se estiver trabalhndo com o projeto em mais de um local</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Alterações realizadas&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div>
+</div>
+<div id="cheatsheet-rmarkdown-latex" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Cheatsheet RMarkdown
+&amp; LaTeX</h1>
+<p>Este documento resume os principais comandos de
+<strong>RMarkdown</strong> e <strong>LaTeX</strong> lado a lado.</p>
+<hr />
+<div id="estrutura-de-texto" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Estrutura de
+texto</h2>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="26%" />
+<col width="45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>O que você quer</th>
+<th>RMarkdown (<code>.Rmd</code>)</th>
+<th>LaTeX (<code>.tex</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Título nível 1</td>
+<td><code># Título</code></td>
+<td><code>\section{Título}</code></td>
+</tr>
+<tr class="even">
+<td>Título nível 2</td>
+<td><code>## Subtítulo</code></td>
+<td><code>\subsection{Subtítulo}</code></td>
+</tr>
+<tr class="odd">
+<td>Título nível 3</td>
+<td><code>### Subsubtítulo</code></td>
+<td><code>\subsubsection{Título}</code></td>
+</tr>
+<tr class="even">
+<td>Negrito</td>
+<td><code>**texto**</code></td>
+<td><code>\textbf{texto}</code></td>
+</tr>
+<tr class="odd">
+<td>Itálico</td>
+<td><code>*texto*</code></td>
+<td><code>\textit{texto}</code></td>
+</tr>
+<tr class="even">
+<td>Lista não-ordenada</td>
+<td><code>- item</code></td>
+<td><code>\begin{itemize} \item ... \end{itemize}</code></td>
+</tr>
+<tr class="odd">
+<td>Lista ordenada</td>
+<td><code>1. item</code></td>
+<td><code>\begin{enumerate} \item ... \end{enumerate}</code></td>
+</tr>
+<tr class="even">
+<td>Link</td>
+<td><code>[nome](url)</code></td>
+<td><code>\href{url}{nome}</code></td>
+</tr>
+<tr class="odd">
+<td>Imagem</td>
+<td><code>![](img.png)</code></td>
+<td><code>\includegraphics{img.png}</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="código-e-blocos" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Código e blocos</h2>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="36%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>O que você quer</th>
+<th>RMarkdown</th>
+<th>LaTeX</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Código embutido (inline)</td>
+<td><code>`2+2`</code> → 4</td>
+<td><code>\verb|2+2|</code></td>
+</tr>
+<tr class="even">
+<td>Bloco de código R</td>
+<td><code>```{r} summary(cars) ```</code></td>
+<td><code>\begin{lstlisting} ... \end{lstlisting}</code></td>
+</tr>
+<tr class="odd">
+<td>Equação inline</td>
+<td><code>$a^2 + b^2 = c^2$</code></td>
+<td><code>\( a^2 + b^2 = c^2 \)</code></td>
+</tr>
+<tr class="even">
+<td>Equação destacada</td>
+<td><code>$$E = mc^2$$</code></td>
+<td><code>\[ E = mc^2 \]</code> ou
+<code>\begin{equation}...\end{equation}</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="tabelas" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Tabelas</h2>
+<p><strong>RMarkdown:</strong></p>
+<pre><code>| Col1 | Col2 |
+|------|------|
+| A    | B    |</code></pre>
+<p><strong>Latex</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{|c|c|}</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>Col1 <span class="op">&amp;</span> Col2 <span class="fu">\\</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>A    <span class="op">&amp;</span> B    <span class="fu">\\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span></code></pre></div>
+</div>
+<div id="outras-funções-úteis" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Outras funções
+úteis</h2>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="22%" />
+<col width="43%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>O que você quer</th>
+<th>RMarkdown</th>
+<th>LaTeX</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Citação</td>
+<td><code>&gt; texto citado</code></td>
+<td><code>\begin{quote} ... \end{quote}</code></td>
+</tr>
+<tr class="even">
+<td>Linha horizontal</td>
+<td><code>---</code></td>
+<td><code>\hrule</code></td>
+</tr>
+<tr class="odd">
+<td>Nota de rodapé</td>
+<td><code>Texto^[nota]</code></td>
+<td><code>Texto\footnote{nota}</code></td>
+</tr>
+<tr class="even">
+<td>Referência bibliográfica</td>
+<td><code>[@chave]</code></td>
+<td><code>\cite{chave}</code> (com BibTeX)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
